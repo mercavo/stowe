@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%%=ENV['APPLICATION_SITE_TITLE']%></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%%= csrf_meta_tags %>
+    <%%= csp_meta_tag %>
+
+    <%%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <%%= turbo_frame_tag "flash" do  %>
+      <%%= render "layouts/shared/flashes" %>
+    <%% end %>
+
+    <div class="d-flex container-full">
+      <div class="">
+        <%%= render 'layouts/shared/menu' %>
+      </div>
+      <div class="flex-grow-1">
+        <div class="p-3">
+            <%%= yield %>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>

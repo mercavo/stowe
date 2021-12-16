@@ -1,0 +1,25 @@
+body { min-height: 100vh; }
+
+.main-menu {
+  height: 100vh;
+  height: -webkit-fill-available;
+  min-height: 100vh;
+  background-color: $primary;
+  
+  .btn {
+   color: #FFF;
+  }
+
+  .dropdown-toggle::after{
+    color: #FFF;
+  }
+}
+
+
+.menu-icon{
+  --ggs: 1.2;
+}
+
+.bordar{
+  border: solid 1px #000 
+}

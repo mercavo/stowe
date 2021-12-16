@@ -1,0 +1,25 @@
+<%% 
+color = {
+  'notice' => "bg-primary text-white",
+  'ok' => "bg-success text-white",
+  'alert' => "bg-warning",
+  'error' => "bg-danger",
+}
+flash.each do |type, message| %>
+  <div
+    data-controller="notification"
+    data-notification-delay-value="2000"
+    class="transition transform duration-1000 hidden"
+    data-transition-enter-from="opacity-0 translate-x-6"
+    data-transition-enter-to="opacity-100 translate-x-0"
+    data-transition-leave-from="opacity-100 translate-x-0"
+    data-transition-leave-to="opacity-0 translate-x-6"
+  >
+    
+    <div class="toast show position-absolute <%%=color[type]%> top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" style="z-index:3000">
+      <div class="toast-body">
+        <%%= message %>
+      </div>
+    </div>
+  </div>
+<%% end %>
