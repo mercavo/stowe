@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stowe (0.1.0)
+    stowe (0.1.1)
       dotenv-rails
       sidekiq
 

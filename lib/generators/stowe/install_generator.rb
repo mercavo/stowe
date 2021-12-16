@@ -25,7 +25,7 @@ module Stowe
         template "config/locales/devise/devise.pt-BR.yml"
         template "config/locales/devise/devise.en.yml"
         template "config/locales/pagy/pagy.pt-BR.yml"
-        template "config/locales/pagy/pagy.env.yml"
+        template "config/locales/pagy/pagy.en.yml"
         template "config/locales/simple_form/simple_form.pt-BR.yml"
         template "config/locales/simple_form/simple_form.en.yml"
         
