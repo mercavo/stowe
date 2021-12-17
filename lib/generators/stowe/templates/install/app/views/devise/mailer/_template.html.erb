@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <style>
+    a:visited {
+      text-decoration: none;
+      color: #00788a;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    h2 a:visited {
+      color: #000 !important;
+    }
+
+    h3 a:visited {
+      color: #000 !important;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    body {
+      background-color: #f6f6f6;
+      font-family: Tahoma, Verdana, Segoe, sans-serif;
+    }
+  </style>
+</head>
+
+<body style="font-family: Tahoma, Verdana, Segoe, sans-serif;" bgcolor="#f6f6f6">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: separate;">
+  <tr>
+    <td align="center" valign="top">
+      <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse: separate;">
+        <tr>
+          <td align="center" valign="middle" height="130">
+            <a href="<%%= ENV["DOMAIN"] %>" target="_blank">
+              <img src="<%%= ENV["DOMAIN"] %>/imgs/logo-x2.png"/>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="#efefef" style="padding:20px 20px; color: #5b5b5f; font-size: 16px; line-height: 21px; text-align: center;">
+            <%%= message %>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td align="center" style="padding: 40px 20px;font-size: 16px;">
+            <span style="color: #5b5b5f;">Para mais informações e dúvidas fale com o nosso time de atendimento.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse: separate; padding: 20px 40px;">
+              <tr>
+                <td align="center" width="200">
+                   <img src="<%%= ENV["DOMAIN"] %>/mail/chat.png"/>
+                </td>
+                <td align="center" width="200">
+                    <img src="<%%= ENV["DOMAIN"] %>/mail/mail.png"/>
+                </td>
+                <td align="center" width="200">
+                  <a href="https://web.whatsapp.com/send?phone=<%%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>">
+                    <img src="<%%= ENV["DOMAIN"] %>/mail/whatsapp.png"/>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td align="center"><br/>
+                  <span style="color: #5b5b5f; font-size: 13px;letter-spacing:-0.3px;">
+                      No site   <b>Segunda à sexta <br /> 9h às 18h.</b>
+                    </span>
+                </td>
+                <td align="center">
+                  <br/>
+                  <span style="color: #5b5b5f; font-size: 13px;letter-spacing:-0.3px;">
+                      Escreva um e-mail para <b><%%= ENV["EMAIL"] %></b>
+                    </span>
+                </td>
+                <td align="center">
+                  <br/>
+                  <span style="color: #5b5b5f; font-size: 13px;letter-spacing:-0.3px;">
+                      Adiciona aí:
+                      <a href="https://api.whatsapp.com/send?phone=<%%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>" style="text-decoration: none; color: #5b5b5f;">
+                        <b><%%= ENV["WHATSAPP"] %></b>
+                      </a>
+                      Segunda a sexta | 8h às 20h.
+                    </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <br/>
+            <br/>
+            <br/>
+            <span style="color: #5b5b5f;">Abraços,<br/>Equipe <%%= ENV["APPLICATION"] %>.</span>
+          </td>
+        </tr>
+        <tr>
+          <td align="center"><br/><br/>
+          <a href="<%%= ENV["DOMAIN"] %>" target="_blank">
+              <img src="<%%= ENV["DOMAIN"] %>/imgs/logo.png"/>
+            </a>
+          </td>
+        </tr>
+        
+      </table>
+    </td>
+  </tr>
+
+</table>
+</body>
+
+</html>

@@ -1,10 +1,9 @@
 
   <div class="d-flex flex-column flex-shrink-0 main-menu" style="width: 4.5rem;">
-    <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
-      <svg class="bi" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="visually-hidden">Icon-only</span>
+   <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+      <img src="/imgs/icon.png" width="64px">  
     </a>
-    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center mt-4">
       <li class="nav-item">
         <%%= link_to root_path, class:"btn position-relative border-bottom py-3", title: "aaaaaaaaaaaaaaaaaa",  "data-bs-toggle": "tooltip",  "data-bs-placement": "right" do %>
           <i class="gg-home menu-icon"></i>

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="signup-form">
+              <%%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: 'mt-5 border p-4 bg-light shadow' }) do |f| %>
+                <%%= f.input :reset_password_token, as: :hidden %>
+                <%%= f.full_error :reset_password_token %>
+                    <h4 class="mb-5 text-secondary"><%%=t('.title')%></h4>
+                    <%%= f.error_notification %>
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                          <%%= f.input :password,
+                            label:t('.new_password'),
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "new-password",  class: 'form-control' } %>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                           <%%= f.input :password_confirmation,
+                              label: "Confirm your new password",
+                              required: true,
+                              input_html: { autocomplete: "new-password", class: 'form-control' } %>
+                          </div>
+                        <div class="col-md-12">
+                          <%%= f.button :submit, class: 'btn btn-primary float-end' %>
+                        </div>
+                    </div>
+                <%% end %>
+                <p class="text-center mt-3 text-secondary">
+                  <%%= render "devise/shared/links" %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

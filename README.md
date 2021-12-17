@@ -1,20 +1,25 @@
-rails new __APP__ --css boostrap
-./bin/setup
-### descomentar
-gem "sassc-rails"
+# Stowe
+## Installation
 
-rails g stowe:setup
-bundle
-rails g stowe:install
-
-in package.json
+Gemfile
+```ruby
+gem 'stowe', git: "git@github.com:mercavo/stowe.git", branch: 'master'
+```
+In packege.json.
+```sh
 "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
 }
+```
 
+terminal
+```
+yes | rails g stowe:setup && bundle && rails g stowe:install
+```
 
- - se usar sidekiq
+##### Usando SIDEKIQ 
+in config/routes.rb
+```
 require 'sidekiq/web'
-
-
+```

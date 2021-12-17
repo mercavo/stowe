@@ -8,7 +8,6 @@ module Stowe
           run 'bundle'
           run 'rails generate devise:install'
           run 'rails generate devise user'
-          run 'rails generate devise:views'
           run 'yarn add bootstrap'
           run 'yarn add css.gg'
           run 'yarn add stimulus'
@@ -28,7 +27,7 @@ module Stowe
         template "config/locales/pagy/pagy.en.yml"
         template "config/locales/simple_form/simple_form.pt-BR.yml"
         template "config/locales/simple_form/simple_form.en.yml"
-        
+
       end
 
       def copy_app
@@ -36,13 +35,50 @@ module Stowe
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
         template "app/views/layouts/application.html.erb", File.join("app/views/layouts",  "application.html.erb")
+        template "app/views/layouts/auth.html.erb", File.join("app/views/layouts",  "auth.html.erb")
         template "app/views/layouts/shared/_menu.html.erb.tt", File.join("app/views/layouts/shared",  "_menu.html.erb")
         template "app/views/layouts/shared/_flashes.html.erb.tt", File.join("app/views/layouts/shared",  "_flashes.html.erb")
 
-        template "app/assets/stylesheets/application.bootstrap.scss.tt", File.join("app//assets/stylesheets",  "application.bootstrap.scss")
+        template "app/views/devise/shared/_links.html.erb.tt", File.join("app/views/devise/shared",  "_links.html.erb")
+
+        template "app/assets/stylesheets/application.bootstrap.scss.tt", File.join("app/assets/stylesheets",  "application.bootstrap.scss")
+
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")
         template "app/javascript/controllers/index.js.tt", File.join("app/javascript/controllers",  "index.js")
+
+        template "app/views/devise/confirmations/new.html.erb"
+
+        template "app/views/devise/mailer/confirmation_instructions.html.erb"
+        template "app/views/devise/mailer/email_changed.html.erb"
+        template "app/views/devise/mailer/password_change.html.erb"
+        template "app/views/devise/mailer/reset_password_instructions.html.erb"
+        template "app/views/devise/mailer/reset_password_instructions.html.erb"
+
+        template "app/views/devise/passwords/edit.html.erb"
+        template "app/views/devise/passwords/new.html.erb"
+
+        template "app/views/devise/registrations/new.html.erb"
+        template "app/views/devise/registrations/edit.html.erb"
+
+        template "app/views/devise/sessions/new.html.erb"
+        template "app/views/devise/shared/_error_messages.html.erb"
+
+        template "app/views/devise/unlocks/new.html.erb"
+
+        template "public/404.html"
+        template "public/422.html"
+        template "public/500.html"
+
+        template "public/imgs/favicon.ico"
+        template "public/imgs/icon.png"
+        template "public/imgs/logo.png"
+        template "public/imgs/logo-x2.png"
+
+        template "public/mail/chat.png"
+        template "public/mail/mail.png"
+        template "public/mail/whatsapp.png"
+        
       end
 
       def add_install_routes
@@ -55,6 +91,14 @@ module Stowe
       def add_application_config
         application"I18n.available_locales = [:en, :pt_BR]"
         application "config.i18n.default_locale = :'pt_BR'"
+        application "config.x.mail_from = ENV['SES_EMAIL']"
+        application "config.action_mailer.default_url_options = { host: ENV['DOMAIN'] }"
+        application "config.action_mailer.smtp_settings = { 
+                          address: ENV['SES_ADDRESS'],
+                          user_name: ENV['SES_USERNAME'], 
+                          password: ENV['SES_PASSWORD']
+                        }"
+        application "config.action_mailer.raise_delivery_errors = true"
       end
     end
   end

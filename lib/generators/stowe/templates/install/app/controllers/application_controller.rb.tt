@@ -1,9 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  layout :set_layout
 
   protected
 
   def after_sign_in_path_for(resource)
     root_path
+  end
+
+  def set_layout
+    return "auth" unless user_signed_in?
+
+    "application"
   end
 end

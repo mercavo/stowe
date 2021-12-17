@@ -11,21 +11,12 @@
     <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
   </head>
 
-  <body>
+  <body class="text-center">
     <%%= turbo_frame_tag "flash" do  %>
       <%%= render "layouts/shared/flashes" %>
     <%% end %>
-
-    <div class="d-flex container-full">
-      <div class="">
-        <%%= render 'layouts/shared/menu' %>
-      </div>
-      <div class="flex-grow-1">
-        <div class="p-3">
-            <%%= yield %>
-        </div>
-      </div>
-    </div>
-    
+    <main class="form-signin">
+      <%%= yield %>    
+    </main>
   </body>
 </html>
