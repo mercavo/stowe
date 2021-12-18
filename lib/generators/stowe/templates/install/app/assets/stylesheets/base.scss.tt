@@ -51,3 +51,10 @@ body { min-height: 100vh; }
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.error_notification{
+  background-color: #dc3545;
+  opacity: 0.5;
+  padding: 10px;
+  color: #FFF;
+}

@@ -16,14 +16,10 @@
       <%%= render "layouts/shared/flashes" %>
     <%% end %>
 
-    <div class="d-flex container-full">
-      <div class="">
-        <%%= render 'layouts/shared/menu' %>
-      </div>
-      <div class="flex-grow-1">
-        <div class="p-3">
-            <%%= yield %>
-        </div>
+     <%%= render 'layouts/shared/menu' %>
+    <div class="container-full">
+      <div class="p-5">
+        <%%= yield %>
       </div>
     </div>
     

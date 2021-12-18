@@ -15,11 +15,10 @@ In packege.json.
 
 terminal
 ```
-yes | rails g stowe:setup && bundle && rails g stowe:install
+yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install
 ```
 
-##### Usando SIDEKIQ 
+##### for use SIDEKIQ 
 in config/routes.rb
-```
-require 'sidekiq/web'
+```require 'sidekiq/web'
 ```

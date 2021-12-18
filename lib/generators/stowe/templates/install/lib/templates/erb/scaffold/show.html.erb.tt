@@ -1,0 +1,21 @@
+<%%%= turbo_frame_tag("crud") do %>
+<%%%= render 'head' %>
+  <%%%= turbo_frame_tag("loadingData") do %>
+    <div class="card">
+      <div class="card-body p-5">
+        <div class="d-flex justify-content-between py-4">
+          <h6><%%%=@<%%= singular_table_name %>.name%></h6>
+          <%%%= render 'actions', <%%= singular_table_name %>: @<%%= singular_table_name %> %>
+        </div>
+        <table class="table">
+          <%%- attributes.each do |attribute| -%>
+            <tr>
+              <th width="25%"><%%%= t('.<%%= attribute.name %>') %></th>
+              <td><%%%=@<%%= singular_table_name %>.<%%= attribute.name %>%></td>
+            </tr>
+          <%%- end -%>
+        </table>
+      </div>
+    </div>
+  <%%% end %>
+<%%% end %>

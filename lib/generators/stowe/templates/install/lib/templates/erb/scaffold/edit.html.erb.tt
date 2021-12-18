@@ -1,0 +1,6 @@
+<%%%= turbo_frame_tag("crud") do %>
+  <%%%= render 'head' %>
+  <%%%= turbo_frame_tag("loadingData") do %>
+    <%%%= render "form", <%%= singular_table_name %>: @<%%= singular_table_name %> %>
+  <%%% end %>
+<%%% end %>

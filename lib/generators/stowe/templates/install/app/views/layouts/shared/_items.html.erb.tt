@@ -1,0 +1,7 @@
+<% items = [
+    { label: "One", path: root_path },
+    { label: "Two", path: root_path },
+  ] %>
+<% items.each do |item| %>
+  <li><a href="<%= item[:path] %>" class="nav-link px-2 link-<%= layout %>"><%= item[:label] %></a></li>
+<% end %>

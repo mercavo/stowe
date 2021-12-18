@@ -1,0 +1,22 @@
+<%%# frozen_string_literal: true %>
+
+<div class="card">
+  <div class="card-body">
+    <%%%= simple_form_for(@<%%= singular_table_name %>) do |f| %>
+      <%%%= f.error_notification %>
+      <%%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      
+    <%%- attributes.each do |attribute| -%>
+      <div class="m-4">
+        <%%%= f.<%%= attribute.reference? ? :association : :input %> :<%%= attribute.name %> , input_html: {class: 'form-control'} %>
+      </div>
+    <%%- end -%>      
+
+      <div class="text-end m-4">
+        <%%%= link_to "volar", <%%= controller_class_name.downcase %>_path, class: 'btn btn-light' %>
+        <%%%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <%%% end %>
+  </div>
+</div>
+

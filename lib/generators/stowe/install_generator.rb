@@ -8,6 +8,7 @@ module Stowe
           run 'bundle'
           run 'rails generate devise:install'
           run 'rails generate devise user'
+          run 'rails generate simple_form:install'
           run 'yarn add bootstrap'
           run 'yarn add css.gg'
           run 'yarn add stimulus'
@@ -19,6 +20,7 @@ module Stowe
         template ".env"
         template "config/initializers/devise.rb"
         template "config/initializers/assets.rb"
+        template "config/initializers/pagy.rb"
         template "config/locales/pt-BR.yml"
 
         template "config/locales/devise/devise.pt-BR.yml"
@@ -30,6 +32,23 @@ module Stowe
 
       end
 
+      def copy_scaffold
+        template "lib/rails/generators/erb/scaffold/scaffold_generator.rb"
+        template "lib/templates/active_record/model/model.rb"
+
+        template "lib/templates/erb/scaffold/_actions.html.erb.tt"
+        template "lib/templates/erb/scaffold/_form.html.erb.tt"
+        template "lib/templates/erb/scaffold/_head.html.erb.tt"
+        template "lib/templates/erb/scaffold/_item.html.erb.tt"
+        template "lib/templates/erb/scaffold/_table.html.erb.tt"
+        template "lib/templates/erb/scaffold/edit.html.erb.tt"
+        template "lib/templates/erb/scaffold/new.html.erb.tt"
+        template "lib/templates/erb/scaffold/index.html.erb.tt"
+        template "lib/templates/erb/scaffold/show.html.erb.tt"
+
+        template "lib/templates/rails/scaffold_controller/controller.rb.tt"
+      end
+
       def copy_app
         template "app/controllers/homepage_controller.rb.tt", File.join("app/controllers",  "homepage_controller.rb")
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
@@ -38,6 +57,7 @@ module Stowe
         template "app/views/layouts/auth.html.erb", File.join("app/views/layouts",  "auth.html.erb")
         template "app/views/layouts/shared/_menu.html.erb.tt", File.join("app/views/layouts/shared",  "_menu.html.erb")
         template "app/views/layouts/shared/_flashes.html.erb.tt", File.join("app/views/layouts/shared",  "_flashes.html.erb")
+        template "app/views/layouts/shared/_items.html.erb.tt", File.join("app/views/layouts/shared",  "_items.html.erb")
 
         template "app/views/devise/shared/_links.html.erb.tt", File.join("app/views/devise/shared",  "_links.html.erb")
 
@@ -46,6 +66,8 @@ module Stowe
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")
         template "app/javascript/controllers/index.js.tt", File.join("app/javascript/controllers",  "index.js")
+
+        template "app/helpers/application_helper.rb"
 
         template "app/views/devise/confirmations/new.html.erb"
 

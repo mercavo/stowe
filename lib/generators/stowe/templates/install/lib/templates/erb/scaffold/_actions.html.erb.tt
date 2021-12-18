@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-end">
+  <%%%= link_to gg('pen'), edit_<%%= singular_table_name %>_path(<%%= singular_table_name %>), class: 'btn', data: { turbo: '_top' } %>
+  <%%%= button_to gg('trash'), <%%= singular_table_name %>, method: :delete, class: 'btn text-danger' %>
+</div>
