@@ -4,3 +4,4 @@ application.register("hello", HelloController)
 
 import Notification from "stimulus-notification"
 application.register("notification", Notification)
+  

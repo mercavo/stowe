@@ -1,0 +1,22 @@
+pt_BR:
+  users:
+    head:
+      title: 'Usuário'
+      new: 'Novo Usuário'
+    table:
+      email: "E-mail"
+    show:
+      email: "E-mail"
+  
+  simple_form:
+    labels:
+      user:
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirma Senha"
+  
+  activerecord:
+    models:
+      user:
+        one: "Usuário"
+        other: "Usuários"

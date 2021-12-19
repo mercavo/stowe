@@ -1,0 +1,16 @@
+class AuthorizedController < ApplicationController
+  before_action :authenticate_user!
+  before_action :redirect_create_account
+  include Pagy::Backend
+  
+  protected
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  def redirect_create_account
+    @account = Account.new
+    render "accounts/create_account" unless current_user.has_account?
+  end
+end

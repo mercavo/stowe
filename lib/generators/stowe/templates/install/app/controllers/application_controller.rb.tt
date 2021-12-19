@@ -1,17 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-  include Pagy::Backend
   layout :set_layout
 
   protected
 
-  def after_sign_in_path_for(resource)
-    root_path
-  end
-
   def set_layout
     return "auth" unless user_signed_in?
-
+    return "auth" unless  current_user.has_account?
     "application"
   end
 end

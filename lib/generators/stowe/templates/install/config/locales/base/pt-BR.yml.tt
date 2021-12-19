@@ -1,0 +1,20 @@
+pt_BR:
+  accounts:
+    head:
+      title: ''
+      new: ''
+    table:
+      name: ""
+    show:
+      name: ""
+  
+  simple_form:
+    labels:
+      account:
+        name: ""
+  
+  activerecord:
+    models:
+      account:
+        one: ""
+        other: ""

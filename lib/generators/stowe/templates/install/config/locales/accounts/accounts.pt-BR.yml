@@ -1,0 +1,23 @@
+pt_BR:
+  accounts:
+    head:
+      title: 'Contas'
+      new: 'Nova Conta'
+    table:
+      name: "Identificador"
+    show:
+      name: "Identificador"
+    create_account:
+      title: "Finalize seu cadastro"
+      subtitle: 'Complete seu cadastro informando os dados abaixo'
+  
+  simple_form:
+    labels:
+      account:
+        name: "Identificador"
+  
+  activerecord:
+    models:
+      account:
+        one: Conta
+        other: Contas

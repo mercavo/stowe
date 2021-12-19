@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="mt-5 text-center">
+        <h2><%%= t('.title')%><h2>
+        <h6><%%= t('.subtitle')%><h2>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <%%= simple_form_for(@account, url: "my_account") do |f| %>
+            <%%= f.error_notification %>
+            <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            
+            <div class="m-4">
+              <%%= f.input :name , input_html: {class: 'form-control'} %>
+            </div>
+            
+
+            <div class="text-end m-4">
+              <%%= link_to t('back'), accounts_path, class: 'btn btn-light' %>
+              <%%= f.button :submit, class: "btn btn-primary" %>
+            </div>
+          <%% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

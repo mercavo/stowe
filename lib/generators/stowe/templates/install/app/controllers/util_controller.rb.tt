@@ -1,0 +1,15 @@
+class UtilController < ApplicationController
+  def create_account
+    account = Account.new(account_params)
+    account.users << current_user
+    if account.save
+      redirect_to root_path
+    end
+  end
+
+  private
+
+  def account_params
+    params.require(:account).permit(:name)
+  end
+end

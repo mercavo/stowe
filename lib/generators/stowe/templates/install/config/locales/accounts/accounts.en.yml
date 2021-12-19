@@ -1,0 +1,23 @@
+en:
+  accounts:
+    head:
+      title: 'Account'
+      new: 'New Account'
+    table:
+      name: "ID"
+    show:
+      name: "ID"
+    create_account:
+      title: "Complete your registration"
+      subtitle: 'Complete your registration by entering the data below'
+  
+  simple_form:
+    labels:
+      account:
+        name: "ID"
+  
+  activerecord:
+    models:
+      account:
+        one: "Account"
+        other: "Accounts"

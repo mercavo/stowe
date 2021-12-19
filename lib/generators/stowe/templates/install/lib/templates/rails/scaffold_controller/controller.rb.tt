@@ -1,5 +1,5 @@
 <%% module_namespacing do -%>
-class <%%= controller_class_name %>Controller < ApplicationController
+class <%%= controller_class_name %>Controller < AuthorizedController
   before_action :set_<%%= singular_table_name %>, only: %i[ show edit update destroy ]
 
   # GET <%%= route_url %>

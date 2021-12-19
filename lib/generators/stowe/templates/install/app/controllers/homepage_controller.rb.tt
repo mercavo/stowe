@@ -1,4 +1,4 @@
-class HomepageController < ApplicationController
+class HomepageController < AuthorizedController
   def index
   end
 end

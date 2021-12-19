@@ -9,6 +9,9 @@ module Stowe
           run 'rails generate devise:install'
           run 'rails generate devise user'
           run 'rails generate simple_form:install'
+          run 'rails g scaffold account name'
+          run 'rails g migration CreateJoinTableAccountUser account user'
+          run 'rails generate scaffold_controller User email password password_confirmation'
           run 'yarn add bootstrap'
           run 'yarn add css.gg'
           run 'yarn add stimulus'
@@ -30,6 +33,12 @@ module Stowe
         template "config/locales/simple_form/simple_form.pt-BR.yml"
         template "config/locales/simple_form/simple_form.en.yml"
 
+        template "config/locales/accounts/accounts.en.yml"
+        template "config/locales/accounts/accounts.pt-BR.yml"
+        template "config/locales/users/users.en.yml"
+        template "config/locales/users/users.pt-BR.yml"
+
+        template "config/routes.rb"
       end
 
       def copy_scaffold
@@ -50,7 +59,15 @@ module Stowe
       end
 
       def copy_app
+        #### model
+        template "app/models/user.rb"
+        template "app/models/account.rb"
+        template "app/views/accounts/create_account.html.erb.tt"
+
         template "app/controllers/homepage_controller.rb.tt", File.join("app/controllers",  "homepage_controller.rb")
+        template "app/controllers/authorized_controller.rb.tt", File.join("app/controllers",  "authorized_controller.rb")
+        template "app/controllers/util_controller.rb.tt", File.join("app/controllers",  "util_controller.rb")
+
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
         template "app/views/layouts/application.html.erb", File.join("app/views/layouts",  "application.html.erb")
@@ -66,6 +83,7 @@ module Stowe
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")
         template "app/javascript/controllers/index.js.tt", File.join("app/javascript/controllers",  "index.js")
+        template "app/javascript/application.js.tt", File.join("app/javascript",  "application.js")
 
         template "app/helpers/application_helper.rb"
 
@@ -103,12 +121,14 @@ module Stowe
         
       end
 
-      def add_install_routes
-        install_route  = "root 'homepage#index'"
-        install_route << "\n"
-        install_route << "# mount Sidekiq::Web => '/sidekiq'"
-        route install_route
-      end
+      # def add_install_routes
+      #   install_route  = "root 'homepage#index'"
+      #   install_route << "\n"
+      #   install_route << "# mount Sidekiq::Web => '/sidekiq'"
+      #   install_route << "\n"
+      #   install_route << "devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }"
+      #   route install_route
+      # end
 
       def add_application_config
         application"I18n.available_locales = [:en, :pt_BR]"

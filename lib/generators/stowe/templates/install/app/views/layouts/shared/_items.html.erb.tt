@@ -1,7 +1,7 @@
-<% items = [
+<%% items = [
     { label: "One", path: "#" },
     { label: "Two", path: "#" },
   ] %>
-<% items.each do |item| %>
-  <li><a href="<%= item[:path] %>" class="nav-link px-2 link-<%= layout %>"><%= item[:label] %></a></li>
-<% end %>
+<%% items.each do |item| %>
+  <li><a href="<%%= item[:path] %>" class="nav-link px-2 link-<%%= layout %>"><%%= item[:label] %></a></li>
+<%% end %>

@@ -1,0 +1,16 @@
+class User < ApplicationRecord
+  has_and_belongs_to_many :accounts
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
+  def self.search(q)
+    return self.where('name LIKE ?', "%#{q}%") if q.present?
+
+    self.all
+  end
+
+  def has_account?
+    accounts.present?
+  end
+end
