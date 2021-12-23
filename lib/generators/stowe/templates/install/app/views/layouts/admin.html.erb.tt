@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%%=ENV['APPLICATION_SITE_TITLE']%></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%%= csrf_meta_tags %>
+    <%%= csp_meta_tag %>
+
+    <%%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.ico">
+  </head>
+
+  <body class="bg-dark">
+    <%%= render "layouts/admin/nav" %>
+
+    <%%= turbo_frame_tag "flash" do  %>
+      <%%= render "layouts/shared/flashes" %>
+    <%% end %>
+
+    <div class="container-full">
+      <div class="p-5">
+        <%%= yield %>
+      </div>
+    </div>
+    
+  </body>
+</html>

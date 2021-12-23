@@ -17,7 +17,6 @@
             
 
             <div class="text-end m-4">
-              <%%= link_to t('back'), accounts_path, class: 'btn btn-light' %>
               <%%= f.button :submit, class: "btn btn-primary" %>
             </div>
           <%% end %>

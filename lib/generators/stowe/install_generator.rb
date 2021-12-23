@@ -11,7 +11,8 @@ module Stowe
           run 'rails generate simple_form:install'
           run 'rails g scaffold account name'
           run 'rails g migration CreateJoinTableAccountUser account user'
-          run 'rails generate scaffold_controller User email password password_confirmation'
+          run 'rails g migration add_role_to_user role:integer account_id:integer'
+          run 'rails db:migrate'
           run 'yarn add bootstrap'
           run 'yarn add css.gg'
           run 'yarn add stimulus'
@@ -66,15 +67,18 @@ module Stowe
 
         template "app/controllers/homepage_controller.rb.tt", File.join("app/controllers",  "homepage_controller.rb")
         template "app/controllers/authorized_controller.rb.tt", File.join("app/controllers",  "authorized_controller.rb")
+        template "app/controllers/admin_controller.rb.tt", File.join("app/controllers",  "admin_controller.rb")
         template "app/controllers/util_controller.rb.tt", File.join("app/controllers",  "util_controller.rb")
 
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
         template "app/views/layouts/application.html.erb", File.join("app/views/layouts",  "application.html.erb")
         template "app/views/layouts/auth.html.erb", File.join("app/views/layouts",  "auth.html.erb")
+        template "app/views/layouts/admin.html.erb", File.join("app/views/layouts",  "admin.html.erb")
         template "app/views/layouts/shared/_menu.html.erb.tt", File.join("app/views/layouts/shared",  "_menu.html.erb")
         template "app/views/layouts/shared/_flashes.html.erb.tt", File.join("app/views/layouts/shared",  "_flashes.html.erb")
         template "app/views/layouts/shared/_items.html.erb.tt", File.join("app/views/layouts/shared",  "_items.html.erb")
+        template "app/views/layouts/admin/_nav.html.erb.tt", File.join("app/views/layouts/admin",  "_nav.html.erb")
 
         template "app/views/devise/shared/_links.html.erb.tt", File.join("app/views/devise/shared",  "_links.html.erb")
 
@@ -105,6 +109,12 @@ module Stowe
         template "app/views/devise/shared/_error_messages.html.erb"
 
         template "app/views/devise/unlocks/new.html.erb"
+
+        ##################SEEDS ###########################
+
+        template "db/seeds.rb"
+
+        ##################SEEDS ###########################
 
         template "public/404.html"
         template "public/422.html"
@@ -144,4 +154,5 @@ module Stowe
       end
     end
   end
+
 end

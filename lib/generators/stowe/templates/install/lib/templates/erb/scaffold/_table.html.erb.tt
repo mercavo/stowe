@@ -2,7 +2,9 @@
   <div class="card-body p-5">
     <table class="table table-striped table-hover">
       <tr>
-        <%%- attributes.each do |attribute| -%>
+        <%%- attributes.each do |attribute| 
+           next if attribute.name == 'account'
+        -%>
           <th>
             <%%%= t('.<%%= attribute.name %>') %>
           </th>

@@ -1,5 +1,14 @@
+<%% 
+  if permitted_params.match(/account_id/)
+    @model = "@current_account.#{plural_table_name}"
+    @base = "AuthorizedController"
+  else
+    @model = "#{singular_table_name.capitalize}"
+    @base = "AdminController"
+  end
+%>
 <%% module_namespacing do -%>
-class <%%= controller_class_name %>Controller < AuthorizedController
+class <%%= controller_class_name %>Controller < <%% @base %>
   before_action :set_<%%= singular_table_name %>, only: %i[ show edit update destroy ]
 
   # GET <%%= route_url %>
@@ -24,11 +33,11 @@ class <%%= controller_class_name %>Controller < AuthorizedController
 
   # POST <%%= route_url %>
   def create
-    @<%%= singular_table_name %> = <%%= orm_class.build(class_name, "#{singular_table_name}_params") %>
+    @<%%= singular_table_name %> = <%%=@model%>.new(<%%= singular_table_name %>_params)
     respond_to do |format|
       if @<%%= orm_instance.save %>
         format.turbo_stream do
-            flash[:ok] = "Page saved"
+            flash[:ok] = t('save_msg')
             search
             render turbo_stream: 
               [
@@ -47,7 +56,7 @@ class <%%= controller_class_name %>Controller < AuthorizedController
     respond_to do |format|
       if @<%%= orm_instance.update("#{singular_table_name}_params") %>
         format.turbo_stream do
-              flash[:ok] = "Page saved"
+              flash[:ok] = t('edit_msg')
               search
               render turbo_stream: 
                 [
@@ -70,7 +79,7 @@ class <%%= controller_class_name %>Controller < AuthorizedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_<%%= singular_table_name %>
-      @<%%= singular_table_name %> = <%%= orm_class.find(class_name, "params[:id]") %>
+      @<%%= singular_table_name %> = <%%=@model%>.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -83,7 +92,7 @@ class <%%= controller_class_name %>Controller < AuthorizedController
     end
 
     def search     
-      @pagy, @records = pagy( <%%= singular_table_name.capitalize %>.search(params[:q]))
+      @pagy, @records = pagy( <%%=@model%>.search(params[:q]))
     end
 end
 <%% end -%>

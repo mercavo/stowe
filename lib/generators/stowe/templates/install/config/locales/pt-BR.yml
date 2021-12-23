@@ -221,3 +221,7 @@ pt_BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+
+  search: "Buscar"
+  save_msg: "Registro salvo"
+  edit_msg: "Registro alterado"

@@ -8,14 +8,16 @@
           <%%%= render 'actions', <%%= singular_table_name %>: @<%%= singular_table_name %> %>
         </div>
         <table class="table">
-          <%%- attributes.each do |attribute| -%>
+          <%%- attributes.each do |attribute| 
+            next if attribute.name == 'account'
+          -%>
             <tr>
               <th width="25%"><%%%= t('.<%%= attribute.name %>') %></th>
               <td><%%%=@<%%= singular_table_name %>.<%%= attribute.name %>%></td>
             </tr>
           <%%- end -%>
         </table>
-        <%%%= button_to gg('trash'), <%%= singular_table_name %>, method: :delete, class: 'btn text-danger' %>
+        <%%%= button_to gg('trash'), @<%%= singular_table_name %>, method: :delete, class: 'btn text-danger' %>
       </div>
     </div>
   <%%% end %>

@@ -1,5 +1,7 @@
 class Account < ApplicationRecord
+  validates :name, presence: :true
   has_and_belongs_to_many :users
+  
   def self.search(q)
     return self.where('name LIKE ?', "%#{q}%") if q.present?
 

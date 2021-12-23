@@ -1,0 +1,15 @@
+class AdminController < AuthorizedController
+  before_action :authenticate_user!, :authorize_access
+  include Pagy::Backend
+  
+  layout "admin"
+
+
+  protected
+  
+  def authorize_access
+    return if current_user.admin?
+    redirect_to root_path
+  end
+
+end

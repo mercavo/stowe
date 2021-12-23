@@ -1,13 +1,16 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :users
-  resources :accounts
-  
   post 'my_account', to: 'util#create_account'
   
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   
+  scope :stowe do
+    resources :users
+  resources :accounts
+  end
+  get 'stowe', to: "stowe#index"
+
   root 'homepage#index'
 end

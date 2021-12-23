@@ -1,9 +1,14 @@
 class UtilController < ApplicationController
   def create_account
-    account = Account.new(account_params)
-    account.users << current_user
-    if account.save
-      redirect_to root_path
+    @account = Account.new(account_params)
+    @account.users << current_user
+    respond_to do |format|
+      if @account.save
+        current_user.update(account_id: @account.id)
+        redirect_to root_path
+      else  
+        format.html { render 'accounts/create_account', status: :unprocessable_entity }
+      end
     end
   end
 

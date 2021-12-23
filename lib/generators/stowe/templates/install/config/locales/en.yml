@@ -1,2 +1,5 @@
 en:
   hello: "Hello world"
+  search: "Search"
+  save_msg: "Record saved"
+  edit_msg: "Record changed"

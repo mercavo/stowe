@@ -1,7 +1,5 @@
 class AuthorizedController < ApplicationController
-  before_action :authenticate_user!
-  before_action :redirect_create_account
-  include Pagy::Backend
+  before_action :authenticate_user! , :redirect_create_account, :set_variavles
   
   protected
 
@@ -12,5 +10,9 @@ class AuthorizedController < ApplicationController
   def redirect_create_account
     @account = Account.new
     render "accounts/create_account" unless current_user.has_account?
+  end
+
+  def set_variavles
+     @current_account = Account.find(current_user.account_id)
   end
 end

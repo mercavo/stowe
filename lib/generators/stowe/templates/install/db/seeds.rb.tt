@@ -1,0 +1,13 @@
+acc = Account.create(name: "Default Super Admin")
+
+user = User.create(
+  email: "welitonj.jose@gmail.com",
+  password: "123456",
+  password_confirmation: '123456',
+  role: 1,
+  account_id: acc.id
+)
+
+
+user.accounts << acc
+user.save

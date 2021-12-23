@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   layout :set_layout
-
+  include Pagy::Backend
+  
   protected
 
   def set_layout

@@ -1,8 +1,11 @@
 class User < ApplicationRecord
+  after_initialize :set_defaults, unless: :persisted?
   has_and_belongs_to_many :accounts
-
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  enum role: [:common, :admin]
 
   def self.search(q)
     return self.where('name LIKE ?', "%#{q}%") if q.present?
@@ -12,5 +15,9 @@ class User < ApplicationRecord
 
   def has_account?
     accounts.present?
+  end
+
+  def set_defaults
+    self.role  ||= 0
   end
 end
