@@ -1,0 +1,45 @@
+class CheckoutController < AuthorizedController
+  skip_before_action :verify_authenticity_token
+
+  def show
+    @plan = Plan.find(params[:id])
+  end
+
+  def create
+    @subscribe = Subscribe.new(subscribe_params)
+
+    cc = Stripe::Customer.create_source(
+      @current_account.stripe,
+      {source: params[:stripeToken]},
+    )
+   
+    subscription = Stripe::Subscription.create({
+      customer: @current_account.stripe,
+      items: [
+        price: @subscribe.plan.stripe_price_id
+      ], 
+      payment_behavior: 'default_incomplete',
+      expand: ['latest_invoice.payment_intent'],
+      default_payment_method: cc.id
+ 
+    })
+
+    @subscribe.sign = subscription.id
+    @subscribe.account = @current_account
+    @subscribe.status = 'newly'
+    @subscribe.save!
+    
+    redirect_to "/thanks/#{@subscribe.id}"
+  end
+
+  def thanks
+    @subscribe = Subscribe.find(params[:id])
+  end
+
+  private
+
+  def subscribe_params
+    params.require(:subscribe).permit(:name, :plan_id)
+  end
+end
+

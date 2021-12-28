@@ -8,6 +8,5 @@ user = User.create(
   account_id: acc.id
 )
 
-
 user.accounts << acc
 user.save

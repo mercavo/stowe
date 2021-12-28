@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
   has_and_belongs_to_many :accounts
+  has_one_attached :avatar
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

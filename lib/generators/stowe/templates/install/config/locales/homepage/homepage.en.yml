@@ -1,0 +1,7 @@
+en:
+  homepage:
+    profile:
+      title: "Profile %{name}"
+      basic: "My Account"
+      account: "Avanced Data"
+      access: "Access Account"

@@ -9,10 +9,11 @@ module Stowe
           run 'rails generate devise:install'
           run 'rails generate devise user'
           run 'rails generate simple_form:install'
-          run 'rails g scaffold account name'
           run 'rails g migration CreateJoinTableAccountUser account user'
-          run 'rails g migration add_role_to_user role:integer account_id:integer'
-          run 'rails db:migrate'
+          run 'rails g migration add_role_to_user name avatar role:integer account_id:integer'
+          # run 'rails g scaffold account name'
+          run 'rails active_storage:install'
+          # run 'rails db:migrate'
           run 'yarn add bootstrap'
           run 'yarn add css.gg'
           run 'yarn add stimulus'
@@ -38,6 +39,8 @@ module Stowe
         template "config/locales/accounts/accounts.pt-BR.yml"
         template "config/locales/users/users.en.yml"
         template "config/locales/users/users.pt-BR.yml"
+        template "config/locales/homepage/homepage.en.yml"
+        template "config/locales/homepage/homepage.pt-BR.yml"
 
         template "config/routes.rb"
       end
@@ -72,6 +75,7 @@ module Stowe
 
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
+        template "app/views/homepage/profile.html.erb.tt", File.join("app/views/homepage",  "profile.html.erb")
         template "app/views/layouts/application.html.erb", File.join("app/views/layouts",  "application.html.erb")
         template "app/views/layouts/auth.html.erb", File.join("app/views/layouts",  "auth.html.erb")
         template "app/views/layouts/admin.html.erb", File.join("app/views/layouts",  "admin.html.erb")
@@ -83,6 +87,7 @@ module Stowe
         template "app/views/devise/shared/_links.html.erb.tt", File.join("app/views/devise/shared",  "_links.html.erb")
 
         template "app/assets/stylesheets/application.bootstrap.scss.tt", File.join("app/assets/stylesheets",  "application.bootstrap.scss")
+        
 
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")

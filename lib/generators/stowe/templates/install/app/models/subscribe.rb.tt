@@ -1,0 +1,12 @@
+class Subscribe < ApplicationRecord
+  belongs_to :plan, required: true
+  belongs_to :account, required: true
+  
+  enum status: [:newly, :pending, :hired, :overdue, :canceled]
+  def self.search(q)
+    return self.where('name LIKE ?', "%#{q}%") if q.present?
+
+    self.all
+  end
+end
+  

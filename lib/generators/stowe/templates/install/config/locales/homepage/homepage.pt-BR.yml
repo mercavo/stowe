@@ -1,0 +1,7 @@
+pt_BR:
+  homepage:
+    profile:
+      title: "Perfil de %{name}"
+      basic: "Meus Dados"
+      account: "Outro Dados"
+      access: "Dados de Acesso"

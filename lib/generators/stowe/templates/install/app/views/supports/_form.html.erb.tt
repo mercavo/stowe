@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <%%= simple_form_for(@support, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |f| %>
+      <%%= f.error_notification %>
+      <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    
+    <div class="row">          
+      <div class="col-12 col-md-6">
+        <%%= f.input :subject , input_html: {class: 'form-control'} %>
+      </div>
+      <div class="col-12 col-md-6">
+        <%%= f.input :status , input_html: {class: 'form-control'}, collection: [:open, :close] %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <%%= f.fields_for :support_messages do |sm| %>
+          <%%= render "message_form", f: sm %>
+        <%% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <template data-nested-form-target="template">
+          <%%= f.fields_for :support_messages, SupportMessage.new, child_index: 'NEW_RECORD' do |sm| %>
+            <%%= render "message_form", f: sm %>
+          <%% end %>
+        </template>
+
+        <div data-nested-form-target="target"></div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-primary" data-action="nested-form#add">
+          <%%= t('.add')%>
+        </button>
+      </div>
+    </div>
+    
+      <div class="text-end m-4">
+        <%%= link_to t('back'), supports_path, class: 'btn btn-light' %>
+        <%%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <%% end %>
+  </div>
+</div>
+

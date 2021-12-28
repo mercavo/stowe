@@ -1,0 +1,15 @@
+<div class="nested-form-wrapper" data-new-record="<%%= f.object.new_record? %>">
+  <div class="row">
+    <div class="col-1 text-end">
+      <button type="button" class="btn" data-action="nested-form#remove">
+        <i class="gg-trash"></i>
+      </button>
+    </div>
+
+    <div class="col-11">
+      <%%= f.input :body , input_html: {class: 'form-control'} %>
+      <%%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
+    </div>
+  </div>
+  <%%= f.hidden_field :_destroy %>
+</div>

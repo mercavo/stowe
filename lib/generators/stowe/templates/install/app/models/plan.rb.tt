@@ -1,0 +1,11 @@
+class Plan < ApplicationRecord
+  validates :name, :amount, :status, :stripe_price_id, presence: :true
+  
+  enum status: [:active, :inactive]
+  def self.search(q)
+    return self.where('name LIKE ?', "%#{q}%") if q.present?
+
+    self.all
+  end
+end
+  

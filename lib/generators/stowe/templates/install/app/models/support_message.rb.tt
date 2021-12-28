@@ -1,0 +1,13 @@
+class SupportMessage < ApplicationRecord
+  belongs_to :user, required: true
+  belongs_to :support, required: true
+
+  has_rich_text :body
+
+  def self.search(q)
+    return self.where('name LIKE ?', "%#{q}%") if q.present?
+
+    self.all
+  end
+end
+  

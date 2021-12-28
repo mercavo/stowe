@@ -1,0 +1,4 @@
+class StoweController < AdminController
+  def index
+  end
+end

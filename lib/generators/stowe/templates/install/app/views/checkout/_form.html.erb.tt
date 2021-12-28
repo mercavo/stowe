@@ -1,0 +1,24 @@
+<%%= simple_form_for :subscribe, url: checkout_path,  method: :pots, data: { controller: 'stripe', target: 'stripe.form', 'stripe-key': ENV['STRIPE_KEY'] }  do |f| %>
+  <div class="card p-3">
+    <%%= f.input :name, input_html: {class: 'form-control'} %>
+    <%%= f.input :plan_id,  input_html: {class: 'form-control', value: @plan.id } %>
+  </div>
+
+  <div class="card my-5 p-3">
+    <p>Cartao de credito</p>
+    <div class="row my-3">
+      <div class="col-12">
+        <div class="form-row">
+          <div data-target="stripe.cardElement"></div>
+          <div data-target="stripe.cardErrors" role="alert"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-12 text-end">
+        <%%= f.submit t('submit', amount: '9,90'), class: 'btn btn-success m-3 px-3' %>
+      </div>
+    </div>
+<%% end %>

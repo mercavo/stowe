@@ -1,0 +1,12 @@
+<script src="https://js.stripe.com/v3/"></script>
+<div class="container mt-5 px-5">
+    <div class="mb-4">
+        <h2><%%=t('.title')%></h2> <span><%%=t('.subtitle')%></span>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+          <%%= render 'form' %>
+        </div>
+    </div>
+</div>
+

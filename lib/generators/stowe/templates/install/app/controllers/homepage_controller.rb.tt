@@ -1,4 +1,9 @@
 class HomepageController < AuthorizedController
   def index
   end
+
+  def profile
+    @account = @current_account
+    @user = current_user
+  end
 end

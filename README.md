@@ -6,7 +6,7 @@ Gemfile
 gem 'stowe', git: "git@github.com:mercavo/stowe.git", branch: 'master'
 ```
 In packege.json.
-```sh
+```json
 "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
@@ -14,11 +14,13 @@ In packege.json.
 ```
 
 terminal
-```
-yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install
+```sh
+yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install && rails g scaffold account name && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
 ```
 
-##### for use SIDEKIQ 
-in config/routes.rb
-```require 'sidekiq/web'
 ```
+rails db:migrate
+```
+
+
+

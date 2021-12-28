@@ -4,10 +4,10 @@ class AdminController < AuthorizedController
   
   layout "admin"
 
-
   protected
   
   def authorize_access
+    return if params[:controller] == 'users' && params[:action] == 'update'
     return if current_user.admin?
     redirect_to root_path
   end

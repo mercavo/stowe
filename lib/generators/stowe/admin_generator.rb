@@ -3,12 +3,16 @@ module Stowe
     class AdminGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates/install', __FILE__)
 
-      def run
+      def bundle
         inside Rails.root do
-          run 'rails generate scaffold_controller User email password password_confirmation'
-          run 'rails g controller stowe index'
-          run 'rails db:migrate'
+          run 'rails generate scaffold_controller User name avatar'
+          # run 'rails db:migrate'
         end
+      end
+
+      def copy_app
+        template "app/views/stowe/index.html.erb.tt"
+        template "app/controllers/stowe_controller.rb.tt", File.join("app/controllers",  "stowe_controller.rb")
       end
     end
   end

@@ -1,0 +1,40 @@
+<div id="profile">
+  <h4><%%= t('.title', name: current_user.name) %></h4> 
+  <div class="row">
+    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12 my-2">
+      <div class="card rounded p-1">
+        <div class="text-center">
+          <%% if @current_user.avatar.attached? %>
+            <img src="<%%= url_for(@current_user.avatar) %>" width="100" class="rounded-circle">
+          <%% else %>
+            <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+          <%% end %> 
+        </div>
+        <div class="text-center mt-3"> <span class="bg-secondary p-1 px-4 rounded text-white">Pro</span></div>
+      </div>
+    </div>
+    <div class="col-xl-10 col-lg-9 col-md-8 col-sm-12 my-2">
+        <div class="card w-100 p-4">
+          <ul class="nav nav-tabs"  role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="home" aria-selected="true"><%%=t('.basic')%></button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true"><%%=t('.account')%></button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <%%= link_to t('.access'), edit_user_registration_path, class: 'nav-link' %>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content mt-3,">
+          <div class="tab-pane active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+            <%%= render 'accounts/form' %>
+          </div>
+          <div class="tab-pane" id="account" role="tabpanel" aria-labelledby="account-tab">
+            <%%= render 'users/form' %>
+          </div>
+         
+        </div>
+    </div>
+</div>

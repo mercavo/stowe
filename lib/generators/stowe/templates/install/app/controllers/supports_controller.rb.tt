@@ -1,0 +1,85 @@
+
+class SupportsController < AuthorizedController
+  before_action :set_support, only: %i[ show edit update destroy ]
+
+  # GET /supports
+  def index
+    search
+    
+    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'supports/table', locals: {records: @records} ) if params[:q].present?
+  end
+
+  # GET /supports/1
+  def show
+  end
+
+  # GET /supports/new
+  def new
+    @support = Support.new
+  end
+
+  # GET /supports/1/edit
+  def edit
+  end
+
+  # POST /supports
+  def create
+    @support = @current_account.supports.new(support_params)
+    @support.status = 'open'
+    respond_to do |format|
+      if @support.save
+        format.turbo_stream do
+            flash[:ok] = t('save_msg')
+            search
+            render turbo_stream: 
+              [
+                turbo_stream.prepend('flash', partial: 'layouts/shared/flashes', locals: flash),
+                turbo_stream.replace('loadingData', partial: 'supports/table', locals: {records: @records} )
+              ]
+          end
+      else
+         format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /supports/1
+  def update
+    respond_to do |format|
+      if @support.update(support_params)
+        format.turbo_stream do
+              flash[:ok] = t('edit_msg')
+              search
+              render turbo_stream: 
+                [
+                  turbo_stream.prepend('flash', partial: 'layouts/shared/flashes', locals: flash),
+                  turbo_stream.replace('loadingData', partial: 'supports/table', locals: {records: @records} )
+                ]
+            end
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+  end
+
+  # DELETE /supports/1
+  def destroy
+    @support.destroy
+    redirect_to supports_url, notice: "Support was successfully destroyed."
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_support
+      @support = @current_account.supports.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def support_params
+      params.require(:support).permit(:account_id, :subject, :status, support_messages_attributes: [:id, :_destroy, :body, :user_id])
+    end
+
+    def search     
+      @pagy, @records = pagy( @current_account.supports.search(params[:q]))
+    end
+end
