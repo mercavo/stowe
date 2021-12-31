@@ -17,12 +17,15 @@ module Stowe
       def copy_app
         template "app/views/supports/_form.html.erb.tt"
         template "app/views/supports/_message_form.html.erb.tt"
+        template "app/views/supports/_head.html.erb.tt"
 
         template "app/controllers/supports_controller.rb.tt", File.join("app/controllers",  "supports_controller.rb")
 
 
         template "app/models/support_message.rb.tt", File.join("app/models",  "support_message.rb")
         template "app/models/support.rb.tt", File.join("app/models",  "support.rb")
+
+        template "config/locales/supports/supports.pt-BR.yml"
       end
 
       def add_install_routes

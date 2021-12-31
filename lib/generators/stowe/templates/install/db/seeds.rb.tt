@@ -4,9 +4,12 @@ user = User.create(
   email: "welitonj.jose@gmail.com",
   password: "123456",
   password_confirmation: '123456',
-  role: 1,
-  account_id: acc.id
+  role: 1
 )
 
-user.accounts << acc
-user.save
+AccountUser.create(
+  user: user,
+  account: acc,
+  role: 0,
+  is_main: 1
+)

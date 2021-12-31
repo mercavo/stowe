@@ -13,6 +13,7 @@ class AuthorizedController < ApplicationController
   end
 
   def set_variavles
-     @current_account = Account.find(current_user.account_id)
+    @account_user = current_user.account_users.find_by(is_main: true)
+    @current_account = @account_user.account
   end
 end

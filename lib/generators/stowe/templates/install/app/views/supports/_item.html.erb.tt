@@ -1,0 +1,16 @@
+<tr id="<%%= dom_id support %>">
+    <td>
+      <%%= link_to support.subject,  support, class: 'btn' %>
+    </td>
+    <td>
+      <%%= link_to Support.human_attribute_name("status.#{support.status}"),  support, class: 'btn' %>
+    </td>
+    <%% if current_user.admin? %>
+      <td>
+        <%%= link_to support.account.name,  support, class: 'btn' %>
+      </td>
+    <%%end%>
+  <td width="180px">
+    <%%= render 'actions', support: support %>
+  </td>
+</tr>

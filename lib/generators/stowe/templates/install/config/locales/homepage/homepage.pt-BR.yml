@@ -2,6 +2,6 @@ pt_BR:
   homepage:
     profile:
       title: "Perfil de %{name}"
-      basic: "Meus Dados"
-      account: "Outro Dados"
+      basic: "Minha Conta"
+      account: "Meus Dados"
       access: "Dados de Acesso"

@@ -1,14 +1,19 @@
 class Support < ApplicationRecord
+  after_initialize :set_defaults, unless: :persisted?
   validates :subject, presence: :true
   belongs_to :account, required: true
   has_many :support_messages
   accepts_nested_attributes_for :support_messages, reject_if: :all_blank, allow_destroy: true
 
-  enum status: [:open, :close]
+  enum status: [:open, :answered_by_user, :answered_by_admin, :closed]
 
   def self.search(q)
     return self.where('subject LIKE ?', "%#{q}%") if q.present?
 
     self.all
+  end
+
+  def set_defaults
+    self.status ||= 0
   end
 end

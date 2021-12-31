@@ -15,7 +15,7 @@ class <%%= controller_class_name %>Controller < <%%= @base %>
   def index
     search
     
-    return render turbo_stream: turbo_stream.replace('loadingData', partial: '<%%= controller_class_name.downcase %>/table', locals: {records: @records} ) if params[:q].present?
+    return render turbo_stream: turbo_stream.update('loadingData', partial: '<%%= controller_class_name.downcase %>/table', locals: {records: @records} ) if params[:q].present?
   end
 
   # GET <%%= route_url %>/1

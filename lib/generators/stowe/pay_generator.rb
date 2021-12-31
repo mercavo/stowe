@@ -25,7 +25,7 @@ module Stowe
         template "app/views/checkout/show.html.erb.tt"
         template "app/views/checkout/thanks.html.erb.tt"
 
-        template "app/javascript/controllers/stripe_contoller.js.tt"
+        template "app/javascript/controllers/stripe_controller.js.tt"
 
         template "app/views/plans/_form.html.erb.tt"
 
@@ -34,6 +34,11 @@ module Stowe
 
         template "app/models/subscribe.rb.tt", File.join("app/models",  "subscribe.rb")
         template "app/models/plan.rb.tt", File.join("app/models",  "plan.rb")
+
+
+        template "config/locales/plans/plans.pt-BR.yml"
+        template "config/locales/checkout/checkout.pt-BR.yml"
+        template "config/locales/checkout/checkout.en.yml"
       end
 
       def add_install_routes

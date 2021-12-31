@@ -1,0 +1,35 @@
+pt_BR:
+  supports:
+    head:
+      title: 'Tickets de Suporte'
+      new: 'Novo Ticket'
+    table:
+      subject: "Assunto"
+      status: 'Situação'
+    show:
+      subject: "Assunto"
+      status: 'Situação'
+      created_at: 'Aberto em:'
+    form:
+      message: 'Add Nova Mensagem'
+  
+  simple_form:
+    labels:
+      supports:
+        subject: "Assunto"
+        status: 'Situação'
+  
+  activerecord:
+    models:
+      support:
+        one: Ticket
+        other: Tickets
+    attributes:
+      support:
+        subject: "Assunto"
+        status: "Situação"
+      support/status:
+        open: "Aberto"
+        answered_by_user: "Respondido pelo Usuário"
+        answered_by_admin: "Respondido pelo Admin"
+        close: 'Fechado'

@@ -1,0 +1,40 @@
+<%%= turbo_frame_tag("crud") do %>
+<%%= render 'head' %>
+  <%%= turbo_frame_tag("loadingData") do %>
+    <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="card">
+            <div class="card-body p-5">
+              <div class="d-flex justify-content-between py-4">
+                <h6><%%=@support.subject%></h6>
+                <%%= render 'actions', support: @support %>
+              </div>
+              <table class="table">
+                  <tr>
+                    <th width="25%"><%%= t('.subject') %></th>
+                    <td><%%=@support.subject%></td>
+                  </tr>
+                  <tr>
+                    <th width="25%"><%%= t('.status') %></th>
+                    <td><%%=@support.status%></td>
+                  </tr>
+                  <tr>
+                    <th width="25%"><%%= t('.created_at') %></th>
+                    <td><%%=timeago(@support.created_at)%></td>
+                  </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <%% @support.support_messages.each do |sm| %>
+                <%%= render 'message', sm: sm %>
+              <%%end%>
+            </div>
+          </div>
+        </div>
+    </div>
+  <%% end %>
+<%% end %>

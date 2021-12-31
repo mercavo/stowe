@@ -15,7 +15,7 @@ In packege.json.
 
 terminal
 ```sh
-yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install && rails g scaffold account name && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
+yes | rails g stowe:setup && bundle install &&  yes | rails g stowe:install && yes | rails g stowe:account && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
 ```
 
 ```

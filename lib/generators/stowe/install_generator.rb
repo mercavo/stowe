@@ -9,8 +9,7 @@ module Stowe
           run 'rails generate devise:install'
           run 'rails generate devise user'
           run 'rails generate simple_form:install'
-          run 'rails g migration CreateJoinTableAccountUser account user'
-          run 'rails g migration add_role_to_user name avatar role:integer account_id:integer'
+          
           # run 'rails g scaffold account name'
           run 'rails active_storage:install'
           # run 'rails db:migrate'
@@ -65,8 +64,8 @@ module Stowe
       def copy_app
         #### model
         template "app/models/user.rb"
-        template "app/models/account.rb"
-        template "app/views/accounts/create_account.html.erb.tt"
+        # template "app/models/account.rb"
+        # template "app/views/accounts/create_account.html.erb.tt"
 
         template "app/controllers/homepage_controller.rb.tt", File.join("app/controllers",  "homepage_controller.rb")
         template "app/controllers/authorized_controller.rb.tt", File.join("app/controllers",  "authorized_controller.rb")
@@ -88,6 +87,7 @@ module Stowe
 
         template "app/assets/stylesheets/application.bootstrap.scss.tt", File.join("app/assets/stylesheets",  "application.bootstrap.scss")
         
+        template "app/views/util/_nested_form.html.erb.tt", File.join("app/views/util",  "_nested_form.html.erb")
 
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")

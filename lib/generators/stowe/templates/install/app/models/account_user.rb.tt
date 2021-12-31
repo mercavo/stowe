@@ -1,0 +1,8 @@
+class AccountUser < ApplicationRecord
+  belongs_to :account, required: true
+  belongs_to :user, required: true
+  
+  validates :is_main, uniqueness: { scope: :user, message: "should is main" }
+
+  enum role: [:owner, :common]
+end

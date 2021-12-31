@@ -1,0 +1,38 @@
+<%% if pre %>
+  <%%= f.fields_for field, model, child_index: 'NEW_RECORD' do |nf| %>
+    <%%# ##################### %>
+    <div class="item_group py-1" data-new-record="<%%= nf.object.new_record? %>">
+      <div class="d-flex">
+        <div class="flex-shrink-0 align-self-end">
+          <button type="button" class="btn btn-danger"  data-action="nested-form#remove"><%%=gg('trash')%></button>
+        </div>
+        <div class="flex-grow-1 ms-3">
+          <%%= render renderizar, f: nf %>
+        </div>
+      </div>
+      <%%= nf.hidden_field :_destroy %>
+    </div>
+    <%%# ############################ %>
+  <%% end %>
+<%% else %>
+  <%% if show_form %>
+    <%%= f.fields_for field do |nf| %>
+      <%%# ##################### %>
+      <div class="item_group py-1" data-new-record="<%%= nf.object.new_record? %>">
+        <div class="d-flex">
+          <div class="flex-shrink-0 align-self-end">
+            <%% if destroy %>
+              <button type="button" class="btn btn-danger"  data-action="nested-form#remove"><%%=gg('trash')%></button>
+            <%% end %>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <%%= render renderizar, f: nf %>
+          </div>
+        </div>
+        <%%= nf.hidden_field :_destroy %>
+      </div>
+      <%%# ############################ %>
+    <%% end %>
+  <%% end %>
+<%% end %>
+

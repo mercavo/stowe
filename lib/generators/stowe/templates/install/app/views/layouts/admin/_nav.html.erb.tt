@@ -6,13 +6,13 @@
           <%%= link_to "X #{@current_account.name} X", root_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Account</a>
+          <%%= link_to "Contas", accounts_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Users</a>
+         <%%= link_to "Usuarios", users_path, class: "nav-link active" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Planos</a>
+          <%%= link_to "Planos", plans_path, class: "nav-link active" %>
         </li>
          <li class="nav-item">
           <a class="nav-link active" href="#">Suporte</a>

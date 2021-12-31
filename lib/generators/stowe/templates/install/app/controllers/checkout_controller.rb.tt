@@ -2,6 +2,7 @@ class CheckoutController < AuthorizedController
   skip_before_action :verify_authenticity_token
 
   def show
+    @subscribe = Subscribe.new
     @plan = Plan.find(params[:id])
   end
 

@@ -1,0 +1,17 @@
+en:
+  checkout:
+    show:
+      title: 'Purchase the plan: %{name}'
+      subtitle_html: 'You are subscribing to the <strong>%{name}</strong> plan for <strong>%{amount}/month</strong>. Enter your credit card details.'
+    form:
+      name: 'Name on Credit Card'
+      credit_title: 'Enter card details'
+      submit: 'Subscribe %{amount} per month'
+
+
+    thanks:
+      thanks: 'Thanks for subscribe'
+      msg_html: "You are now a part of <strong>%{app}</strong> <br /> you will soon receive a confirmation email"
+      btnroot: "Back to homepage"
+    
+    

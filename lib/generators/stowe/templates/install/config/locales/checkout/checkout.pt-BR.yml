@@ -1,0 +1,14 @@
+pt_BR:
+  checkout:
+    show:
+      title: 'Adquira o plano: %{name}'
+      subtitle_html: 'Você esta assinando o plano <strong>%{name}</strong>  por <strong>%{amount}/mês</strong>. Entre com os dados do seu cartão de crédito.'
+    form:
+      name: 'Nome No Cartão'
+      credit_title: 'Informe os dados do cartão'
+      submit: 'Assinar %{amount} por mês'
+
+    thanks:
+      thanks: 'Obrigado por assinar'
+      msg_html: "Agora você faz parte <strong>%{app}</strong> <br /> em breve receberá um e-mail de confirmação"
+      btnroot: "Voltar para homepage"

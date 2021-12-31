@@ -1,7 +1,7 @@
 import {  Controller } from "stimulus"
 
 export default class extends Controller {
-    static targets = [ 'cardElement', 'cardErrors', 'form' ]
+    static targets = [ 'cardElement', 'cardErrors', 'form']
 
     connect() {
         var stripe = Stripe(this.data.get('key'));
@@ -43,6 +43,10 @@ export default class extends Controller {
         var form = controller.formTarget;
         form.addEventListener('submit', function (event) {
             event.preventDefault();
+            controller.submitButtons().forEach(button => {
+                button.disabled = true
+                button.value = "Processing..."
+            })
 
             stripe.createToken(card).then(function (result) {
                 if (result.error) {
@@ -68,8 +72,11 @@ export default class extends Controller {
         hiddenInput.setAttribute('name', 'stripeToken');
         hiddenInput.setAttribute('value', token.id);
         form.appendChild(hiddenInput);
-
         // Submit the form
         form.submit();
     }
+
+    submitButtons() {
+        return this.element.querySelectorAll("input[type='submit']")
+      }
 }

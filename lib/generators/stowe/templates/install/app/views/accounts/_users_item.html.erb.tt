@@ -1,0 +1,8 @@
+<tr id="<%%= dom_id user %>">
+  <td>
+    <%%= link_to user.name,  user, class: 'btn' %>
+  </td>
+  <td>
+    <%%= link_to user.email,  user, class: 'btn' %>
+  </td>
+</tr>

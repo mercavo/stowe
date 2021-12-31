@@ -51,6 +51,8 @@ pt_BR:
       updated_but_not_signed_in: "Sua conta foi atualizada com sucesso. Como sua senha mudou, você precisa refazer o login."
       new: 
         title: 'Criar uma conta'
+      edit:
+        title: 'Alterar Acesso'
     sessions:
       signed_in: "Login efetuado com sucesso!"
       signed_out: "Saiu com sucesso."

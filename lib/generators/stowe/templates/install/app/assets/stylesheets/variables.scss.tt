@@ -22,5 +22,5 @@ $danger:        $red;
 $light:         #e0e0e0;
 $dark:          #424242;
 
-
-
+$bg-support-common: #cfd8dc;
+$bg-support-admin: #ffccbc;

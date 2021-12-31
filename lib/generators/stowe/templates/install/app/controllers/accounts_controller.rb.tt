@@ -1,0 +1,98 @@
+
+class AccountsController < AdminController
+  before_action :set_account, only: %i[ show edit update destroy ]
+
+  # GET /accounts
+  def index
+    search
+    
+    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'accounts/table', locals: {records: @records} ) if params[:q].present?
+  end
+
+  def account_default
+    return unless current_user.admin?
+
+    @account_user.update(is_main: false)
+    account = Account.find(params[:account_id])
+    au = account.account_users.find_or_create_by(user: current_user)
+    au.role = 'common'
+    au.is_main = true
+    au.save
+
+    redirect_to stowe_path
+  end
+
+  # GET /accounts/1
+  def show
+    @pagy, @records = pagy(@account.users.all)
+  end
+
+  # GET /accounts/new
+  def new
+    @account = Account.new
+  end
+
+  # GET /accounts/1/edit
+  def edit
+  end
+
+  # POST /accounts
+  def create
+    @account = Account.new(account_params)
+    respond_to do |format|
+      if @account.save
+        format.turbo_stream do
+            flash[:ok] = t('save_msg')
+            search
+            render turbo_stream: 
+              [
+                turbo_stream.prepend('flash', partial: 'layouts/shared/flashes', locals: flash),
+                turbo_stream.replace('loadingData', partial: 'accounts/table', locals: {records: @records} )
+              ]
+          end
+      else
+         format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /accounts/1
+  def update
+    respond_to do |format|
+      if @account.update(account_params)
+        format.turbo_stream do
+              flash[:ok] = t('edit_msg')
+              search
+              render turbo_stream: 
+                [
+                  turbo_stream.prepend('flash', partial: 'layouts/shared/flashes', locals: flash),
+                  turbo_stream.replace('loadingData', partial: 'accounts/table', locals: {records: @records} )
+                ]
+            end
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+  end
+
+  # DELETE /accounts/1
+  def destroy
+    @account.destroy
+    redirect_to accounts_url, notice: "Account was successfully destroyed."
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_account
+      @account = Account.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def account_params
+      params.require(:account).permit(:name)
+    end
+
+    def search     
+      @pagy, @records = pagy( Account.search(params[:q]))
+    end
+end

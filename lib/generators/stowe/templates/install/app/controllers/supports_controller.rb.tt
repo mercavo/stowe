@@ -1,6 +1,8 @@
 
 class SupportsController < AuthorizedController
+  before_action :set_model
   before_action :set_support, only: %i[ show edit update destroy ]
+  layout :set_layout
 
   # GET /supports
   def index
@@ -15,7 +17,7 @@ class SupportsController < AuthorizedController
 
   # GET /supports/new
   def new
-    @support = Support.new
+    @support = @model.new
   end
 
   # GET /supports/1/edit
@@ -24,7 +26,7 @@ class SupportsController < AuthorizedController
 
   # POST /supports
   def create
-    @support = @current_account.supports.new(support_params)
+    @support = @model.new(support_params)
     @support.status = 'open'
     respond_to do |format|
       if @support.save
@@ -71,7 +73,7 @@ class SupportsController < AuthorizedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_support
-      @support = @current_account.supports.find(params[:id])
+      @support = @model.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -80,6 +82,16 @@ class SupportsController < AuthorizedController
     end
 
     def search     
-      @pagy, @records = pagy( @current_account.supports.search(params[:q]))
+      @pagy, @records = pagy( @model.search(params[:q]))
+    end
+
+    def set_layout
+      "admin" if current_user.admin?
+    end
+
+    def set_model
+      return @model = Support if current_user.admin?
+
+      @model = @current_account.supports
     end
 end

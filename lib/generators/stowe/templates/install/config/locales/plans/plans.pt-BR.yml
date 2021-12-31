@@ -1,0 +1,20 @@
+pt_BR:
+  plans:
+    head:
+      title: 'Planos do Sistema'
+      new: 'Novo Planoo'
+    table:
+      name: "Nome"
+    show:
+      name: "Nome"
+  
+  simple_form:
+    labels:
+      plans:
+        name: "Nome"
+  
+  activerecord:
+    models:
+      plan:
+        one: Plano
+        other: Planos

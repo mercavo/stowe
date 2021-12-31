@@ -1,0 +1,35 @@
+en:
+  supports:
+    head:
+      title: 'Support Tickets'
+      new: 'New Ticket'
+    table:
+      subject: "Subject"
+      status: 'Status'
+    show:
+      subject: "Subject"
+      status: 'Status'
+      created_at: 'Open in:'
+    form:
+      message: 'Add new Message'
+  
+  simple_form:
+    labels:
+      supports:
+        subject: "Subject"
+        status: 'Status'
+  
+  activerecord:
+    models:
+      support:
+        one: Ticket
+        other: Tickets
+    attributes:
+      support:
+        subject: "Subject"
+        status: "Status"
+      support/status:
+        open: "Open"
+        answered_by_user: "Answered by User"
+        answered_by_admin: "Answered by Admin"
+        closed: 'Closed'

@@ -1,0 +1,9 @@
+<div class="card m-3 <%%=(sm.user.admin?) ? 'bg-support-admin': 'bg-support-common'%>">
+  <div class="card-body">
+    <strong><%%= sm.user.full_name %></strong> <br />
+    <small class="p-3"><%%= sm.body%></small>
+  </div>
+  <div class="card-footer">
+    <small><%%= timeago(sm.created_at) %></time></small>
+  </div>
+</div>

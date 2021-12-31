@@ -8,37 +8,20 @@
       <div class="col-12 col-md-6">
         <%%= f.input :subject , input_html: {class: 'form-control'} %>
       </div>
-      <div class="col-12 col-md-6">
-        <%%= f.input :status , input_html: {class: 'form-control'}, collection: [:open, :close] %>
-      </div>
+      <%% if params[:action] == 'edit' && current_user.admin? %>
+        <div class="col-12 col-md-6">
+          <%%= f.input :status , input_html: {class: 'form-control'}, collection: [:open, :close]  %>
+        </div>
+      <%% end %>
     </div>
-
-    <div class="row">
-      <div class="col-12">
-        <%%= f.fields_for :support_messages do |sm| %>
-          <%%= render "message_form", f: sm %>
-        <%% end %>
+    <%% @support.support_messages.each do |sm| %>
+      <%%= render 'message', sm: sm %>
+    <%%end%>
+      <div class="row">
+        <div class="col-12">
+          <%%= nested_form(f, SupportMessage.new, 'support_messages','message_form', t('.message'), false, false) %>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <template data-nested-form-target="template">
-          <%%= f.fields_for :support_messages, SupportMessage.new, child_index: 'NEW_RECORD' do |sm| %>
-            <%%= render "message_form", f: sm %>
-          <%% end %>
-        </template>
-
-        <div data-nested-form-target="target"></div>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-12 text-center">
-        <button type="button" class="btn btn-primary" data-action="nested-form#add">
-          <%%= t('.add')%>
-        </button>
-      </div>
-    </div>
     
       <div class="text-end m-4">
         <%%= link_to t('back'), supports_path, class: 'btn btn-light' %>

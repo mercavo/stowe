@@ -14,8 +14,7 @@
 }
 
 .container .card .head {
-    position: absolute;
-    width: 150px;
+    
     height: 50px;
     box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
@@ -23,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    left: 37%;
+
     top: -20px;
     background-color: #fff
 }
@@ -49,10 +48,10 @@
 </style>
 
 <div class="container">
-  <div class="card"> <span class="head"><%%= t('.thanks')%></span>
+  <div class="card"> <span class="head px-5 text-center"><%= t('.thanks')%></span>
     <div class="content ">
-      <h3><%%= t('.msg', app: ENV['APPLICATION'])%></h3>
-      <%%= link_to t('.btnroot'), root_path, class: 'btn my-5' %>
+      <h3><%= t('.msg_html', app: ENV['APPLICATION'])%></h3>
+      <%= link_to t('.btnroot'), root_path, class: 'btn my-5' %>
     </div>
   </div>
 </div>

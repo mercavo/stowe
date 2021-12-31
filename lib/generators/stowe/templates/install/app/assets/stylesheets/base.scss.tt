@@ -58,3 +58,11 @@ body { min-height: 100vh; }
   padding: 10px;
   color: #FFF;
 }
+
+.bg-support-common{
+  background-color: $bg-support-common;
+}
+
+.bg-support-admin{
+  background-color: $bg-support-admin;
+}
