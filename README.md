@@ -1,4 +1,6 @@
 # Stowe
+``` rails new APP -d=postgresql --css bootstrap ```
+
 ## Installation
 
 Gemfile
@@ -15,7 +17,7 @@ In packege.json.
 
 terminal
 ```sh
-yes | rails g stowe:setup && bundle install &&  yes | rails g stowe:install && yes | rails g stowe:account && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
+yes | rails g stowe:setup && bundle install && rails db:migrate &&  yes | rails g stowe:install && yes | rails g stowe:account && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
 ```
 
 ```

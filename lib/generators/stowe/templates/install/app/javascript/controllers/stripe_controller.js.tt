@@ -1,7 +1,7 @@
 import {  Controller } from "stimulus"
 
 export default class extends Controller {
-    static targets = [ 'cardElement', 'cardErrors', 'form']
+    static targets = [ 'cardElement', 'cardErrors', 'form', 'msg']
 
     connect() {
         var stripe = Stripe(this.data.get('key'));
@@ -45,14 +45,24 @@ export default class extends Controller {
             event.preventDefault();
             controller.submitButtons().forEach(button => {
                 button.disabled = true
-                button.value = "Processing..."
             })
 
             stripe.createToken(card).then(function (result) {
                 if (result.error) {
                     // Inform the user if there was an error.
-                    var errorElement = this.cardErrorsTarget;
-                    errorElement.textContent = result.error.message;
+                    // var errorElement = this.cardErrorsTarget;
+                    // errorElement.textContent = result.error.message;
+
+                    var displayError = controller.cardErrorsTarget;
+                    if (result.error) {
+                        displayError.textContent = result.error.message;
+                    } else {
+                        displayError.textContent = '';
+                    }
+
+                    controller.submitButtons().forEach(button => {
+                        button.disabled = false
+                    })
                 } else {
                     // Send the token to your server.
                     controller.stripeTokenHandler(result.token);

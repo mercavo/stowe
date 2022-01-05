@@ -1,6 +1,6 @@
-<div class="d-flex justify-content-between py-2">
+<div class="d-md-flex justify-content-between py-2">
   <h4><%%%= t('.title') %></h4>
-  <div class="d-flex">
+  <div class="d-md-flex">
     <%%%= form_with(url: <%%= index_helper %>_path, method: :get) do |form| %>
       <%%%= form.text_field :q, class: 'form-control', placeholder: t('search') %>
     <%%% end %>

@@ -1,4 +1,15 @@
-acc = Account.create(name: "Default Super Admin")
+plan = Plan.create(
+  name: "Free",
+  amount: 'Free',
+  stripe_price_id: "****",
+  status: 0,
+  is_free: 1
+)
+
+acc = Account.create(
+  name: "Default Super Admin",
+  plan_id: plan.id
+)
 
 user = User.create(
   email: "welitonj.jose@gmail.com",

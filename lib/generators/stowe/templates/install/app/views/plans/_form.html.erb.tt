@@ -13,10 +13,13 @@
       <div class="col-12 col-md-6">
         <%%= f.input :stripe_price_id , input_html: {class: 'form-control'} %>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-4">
         <%%= f.input :amount , input_html: {class: 'form-control'} %>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-4">
+        <%%= f.input :is_free,  input_html: {class: 'form-control'}, collection: [:no, :yes] %>
+      </div>
+      <div class="col-12 col-md-4">
         <%%= f.input :status , input_html: {class: 'form-control'}, collection: [:active, :inactive] %>
       </div>
       

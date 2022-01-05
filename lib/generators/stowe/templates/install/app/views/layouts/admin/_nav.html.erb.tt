@@ -14,8 +14,8 @@
         <li class="nav-item">
           <%%= link_to "Planos", plans_path, class: "nav-link active" %>
         </li>
-         <li class="nav-item">
-          <a class="nav-link active" href="#">Suporte</a>
+        <li class="nav-item">
+          <%%= link_to "Suporte", supports_path, class: "nav-link active" %>
         </li>
       </ul>
     </div>

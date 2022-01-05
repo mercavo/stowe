@@ -1,11 +1,26 @@
 class Plan < ApplicationRecord
+  after_initialize :set_defaults, unless: :persisted?
   validates :name, :amount, :status, :stripe_price_id, presence: :true
+
+  has_many :subscribes
   
-  enum status: [:active, :inactive]
+  enum status: [:inactive, :active]
+  enum is_free: [:no, :yes]
+
+  scope :payable, -> { where(is_free: false) }
+
+  def self.free
+    self.where(is_free: true).first
+  end
+
   def self.search(q)
     return self.where('name LIKE ?', "%#{q}%") if q.present?
 
     self.all
+  end
+
+  def set_defaults
+    self.is_free  ||= false
   end
 end
   

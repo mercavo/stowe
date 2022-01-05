@@ -1,11 +1,11 @@
 <div id="profile">
-  <h4><%= t('.title', name: current_user.full_name) %></h4> 
+  <h4><%%= t('.title', name: current_user.full_name) %></h4> 
   <div class="row">
     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12 my-2">
      
     </div>
     <div class="col-xl-10 col-lg-9 col-md-8 col-sm-12 my-2">
-        <%= tabs('profile', [
+        <%%= tabs('profile', [
             { name: "basic", label: t('.basic'), icon: 'tikcode',  render: "accounts/form"},
             { name: "account", label: t('.account'), icon: 'user',  render: "users/form"},
             { name: "access", label: t('.access'), icon: 'password',  redirect: edit_user_registration_path },

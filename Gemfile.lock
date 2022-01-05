@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stowe (0.1.7)
+    stowe (0.1.8)
       dotenv-rails
       sidekiq
 
@@ -66,7 +66,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
-    thor (1.1.0)
+    thor (1.2.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     zeitwerk (2.5.3)

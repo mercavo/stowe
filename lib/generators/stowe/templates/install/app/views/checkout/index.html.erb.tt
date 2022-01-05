@@ -1,0 +1,9 @@
+tela de pouso para o usuario escolher um plano
+
+<br />
+<br />
+<br />
+
+<%% @plan.each do |plan| %>
+  <%%= link_to plan.name, "/checkout/#{plan.id}", class: 'btn btn-primary' %>
+<%% end %>

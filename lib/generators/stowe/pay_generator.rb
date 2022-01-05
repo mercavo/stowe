@@ -10,22 +10,21 @@ module Stowe
       def bundle
         inside Rails.root do
           run 'rails g migration add_stripe_id_to_account stripe'
-          run 'rails g scaffold plan name stripe_price_id amount status:integer'
-          run 'rails g scaffold subscribe plan:references account:references name sign'
+          run 'rails g scaffold plan name stripe_price_id amount status:integer is_free:integer'
+          run 'rails g scaffold subscribe plan:references account:references name sign status:integer expire:datetime'
           run 'yarn add stimulus-stripe-elements'
+          run 'yarn add stimulus-timeago'
         end
       end
 
       def copy_config
         template "config/initializers/stripe.rb"
-      end
-
-      def copy_app
         template "app/views/checkout/_form.html.erb.tt"
         template "app/views/checkout/show.html.erb.tt"
         template "app/views/checkout/thanks.html.erb.tt"
+        template "app/views/checkout/index.html.erb.tt"
 
-        template "app/javascript/controllers/stripe_controller.js.tt"
+        template "app/javascript/controllers/stripe_controller.js.tt", File.join("app/javascript/controllers",  "stripe_controller.js")
 
         template "app/views/plans/_form.html.erb.tt"
 
@@ -41,11 +40,12 @@ module Stowe
         template "config/locales/checkout/checkout.en.yml"
       end
 
-      def add_install_routes
-        get 'checkout/:id', to: 'checkout#show'
-        post 'checkout', to: 'checkout#create'
-        get 'thanks/:id', to: 'checkout#thanks'
-      end
+
+      # def add_install_routes
+      #   get 'checkout/:id', to: 'checkout#show'
+      #   post 'checkout', to: 'checkout#create'
+      #   get 'thanks/:id', to: 'checkout#thanks'
+      # end
     end
   end
 end

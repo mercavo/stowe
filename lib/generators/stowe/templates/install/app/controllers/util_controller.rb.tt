@@ -2,6 +2,7 @@ class UtilController < ApplicationController
   def create_account
     @account = Account.new(account_params)
     @account.account_users.build(user: current_user, role: 'common', is_main: true)
+    @account.subscribes.build(plan_id:  Plan.free.id, status: 'hired', expire: Time.now + 10.years)
     respond_to do |format|
       if @account.save
         redirect_to root_path

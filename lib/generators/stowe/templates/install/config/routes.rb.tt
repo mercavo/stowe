@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'checkout/:id', to: 'checkout#show'
   get 'thanks/:id', to: 'checkout#thanks'
   post 'checkout', to: 'checkout#create'
-
+  get 'checkout', to: 'checkout#index'
+  
   root 'homepage#index'
 end

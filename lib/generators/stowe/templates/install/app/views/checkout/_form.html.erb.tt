@@ -1,25 +1,26 @@
-<%= simple_form_for :subscribe, url: checkout_path,  method: :pots, data: { controller: 'stripe', target: 'stripe.form', 'stripe-key': ENV['STRIPE_KEY'] }  do |f| %>
+<%%= simple_form_for :subscribe, url: checkout_path,  method: :pots, data: { controller: 'stripe', target: 'stripe.form', 'stripe-key': ENV['STRIPE_KEY'] }  do |f| %>
   <div class="card p-3">
-    <%= f.input :name, label: t('.name'), input_html: {class: 'form-control'} %>
-    <%= f.input :plan_id, as: :hidden,  input_html: {class: 'form-control', value: @plan.id } %>
+    <%%= f.input :name, label: t('.name'), input_html: {class: 'form-control'} %>
+    <%%= f.input :plan_id, as: :hidden,  input_html: {class: 'form-control', value: @plan.id } %>
   </div>
 
   <div class="card my-5 p-3">
-    <strong><%=t('.credit_title')%></strong>
+    <strong><%%=t('.credit_title')%></strong>
     <div class="row my-3">
       <div class="col-12">
         <div class="form-row">
           <div data-target="stripe.cardElement"></div>
-          <div data-target="stripe.cardErrors" role="alert"></div>
+          <small class="text-danger mt-2"  data-target="stripe.cardErrors" role="alert"></small>
         </div>
       </div>
     </div>
   </div>
 
+
   <div class="row">
       <div class="col-12 text-end">
-        <%= f.submit t('.submit', amount: @plan.amount), class: 'btn btn-primary text-uppercase fw-bold text-white m-3 p-3', data: {"stripe-target": 'ok' }, id: 'ok' %>
+        <%%= f.submit t('.submit', amount: @plan.amount), class: 'btn btn-primary text-uppercase fw-bold text-white m-3 p-3', data: {"stripe-target": 'ok' }, id: 'ok' %>
       </div>
     </div>
 
-<% end %>
+<%% end %>

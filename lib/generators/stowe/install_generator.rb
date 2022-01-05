@@ -21,7 +21,7 @@ module Stowe
       end
 
       def copy_config
-        template ".env"
+        
         template "config/initializers/devise.rb"
         template "config/initializers/assets.rb"
         template "config/initializers/pagy.rb"
@@ -42,6 +42,7 @@ module Stowe
         template "config/locales/homepage/homepage.pt-BR.yml"
 
         template "config/routes.rb"
+        
       end
 
       def copy_scaffold
@@ -88,6 +89,7 @@ module Stowe
         template "app/assets/stylesheets/application.bootstrap.scss.tt", File.join("app/assets/stylesheets",  "application.bootstrap.scss")
         
         template "app/views/util/_nested_form.html.erb.tt", File.join("app/views/util",  "_nested_form.html.erb")
+        template "app/views/util/_paginate.html.erb.tt", File.join("app/views/util",  "_paginate.html.erb")
 
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")
@@ -118,7 +120,7 @@ module Stowe
         ##################SEEDS ###########################
 
         template "db/seeds.rb"
-
+        
         ##################SEEDS ###########################
 
         template "public/404.html"

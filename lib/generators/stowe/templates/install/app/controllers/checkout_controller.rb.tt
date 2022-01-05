@@ -1,9 +1,14 @@
 class CheckoutController < AuthorizedController
   skip_before_action :verify_authenticity_token
 
+  def index 
+    @plan = Plan.payable
+  end
+
   def show
-    @subscribe = Subscribe.new
     @plan = Plan.find(params[:id])
+    return redirect_to root_path unless @plan.active? || @plan.yes?
+    @subscribe = Subscribe.new
   end
 
   def create
@@ -24,10 +29,11 @@ class CheckoutController < AuthorizedController
       default_payment_method: cc.id
  
     })
-
+    
     @subscribe.sign = subscription.id
     @subscribe.account = @current_account
-    @subscribe.status = 'newly'
+    @subscribe.status = 'hired'
+    @subscribe.expire =Time.at(subscription.current_period_end)
     @subscribe.save!
     
     redirect_to "/thanks/#{@subscribe.id}"

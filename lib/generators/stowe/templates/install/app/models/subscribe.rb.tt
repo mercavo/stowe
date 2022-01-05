@@ -2,11 +2,14 @@ class Subscribe < ApplicationRecord
   belongs_to :plan, required: true
   belongs_to :account, required: true
   
-  enum status: [:newly, :pending, :hired, :overdue, :canceled]
+  enum status: [:newly, :pending, :hired, :overdue, :canceled, :renew]
+
   def self.search(q)
     return self.where('name LIKE ?', "%#{q}%") if q.present?
 
     self.all
   end
+
+  scope :hired_count, -> { where(status: 'hired').count }
 end
   

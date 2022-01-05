@@ -1,0 +1,1 @@
+<%=table(Plan , ["name", "stripe_price_id", "amount", 'is_free', "status"] , @records)%>

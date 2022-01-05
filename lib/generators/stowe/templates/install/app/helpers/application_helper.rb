@@ -1,6 +1,10 @@
 module ApplicationHelper
   include Pagy::Frontend
   
+  def subscriber?
+    @current_account.subscriber? || current_user.admin?
+  end
+
   def gg str=nil
     retorno = ''
     if str.present?

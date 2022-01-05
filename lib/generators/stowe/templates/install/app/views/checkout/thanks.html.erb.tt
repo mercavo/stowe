@@ -48,10 +48,10 @@
 </style>
 
 <div class="container">
-  <div class="card"> <span class="head px-5 text-center"><%= t('.thanks')%></span>
+  <div class="card"> <span class="head px-5 text-center"><%%= t('.thanks')%></span>
     <div class="content ">
-      <h3><%= t('.msg_html', app: ENV['APPLICATION'])%></h3>
-      <%= link_to t('.btnroot'), root_path, class: 'btn my-5' %>
+      <h3><%%= t('.msg_html', app: ENV['APPLICATION'])%></h3>
+      <%%= link_to t('.btnroot'), root_path, class: 'btn my-5' %>
     </div>
   </div>
 </div>
