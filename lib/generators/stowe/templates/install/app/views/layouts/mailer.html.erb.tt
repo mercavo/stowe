@@ -39,14 +39,14 @@
       <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse: separate;">
         <tr>
           <td align="center" valign="middle" height="130">
-            <a href="<%= ENV["DOMAIN"] %>" target="_blank">
-              <img src="<%= ENV["DOMAIN"] %>/imgs/logo-x2.png"/>
+            <a href="<%%= ENV["DOMAIN"] %>" target="_blank">
+              <img src="<%%= ENV["DOMAIN"] %>/imgs/logo-x2.png"/>
             </a>
           </td>
         </tr>
         <tr>
           <td bgcolor="#efefef" style="padding:20px 20px; color: #5b5b5f; font-size: 16px; line-height: 21px; text-align: center;">
-            <%= yield %>
+            <%%= yield %>
           </td>
         </tr>
         <tr valign="top">
@@ -59,14 +59,14 @@
             <table border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#ffffff" style="border-collapse: separate; padding: 20px 40px;">
               <tr>
                 <td align="center" width="200">
-                   <img src="<%= ENV["DOMAIN"] %>/mail/chat.png"/>
+                   <img src="<%%= ENV["DOMAIN"] %>/mail/chat.png"/>
                 </td>
                 <td align="center" width="200">
-                    <img src="<%= ENV["DOMAIN"] %>/mail/mail.png"/>
+                    <img src="<%%= ENV["DOMAIN"] %>/mail/mail.png"/>
                 </td>
                 <td align="center" width="200">
-                  <a href="https://web.whatsapp.com/send?phone=<%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>">
-                    <img src="<%= ENV["DOMAIN"] %>/mail/whatsapp.png"/>
+                  <a href="https://web.whatsapp.com/send?phone=<%%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>">
+                    <img src="<%%= ENV["DOMAIN"] %>/mail/whatsapp.png"/>
                   </a>
                 </td>
               </tr>
@@ -79,15 +79,15 @@
                 <td align="center">
                   <br/>
                   <span style="color: #5b5b5f; font-size: 13px;letter-spacing:-0.3px;">
-                      Escreva um e-mail para <b><%= ENV["EMAIL"] %></b>
+                      Escreva um e-mail para <b><%%= ENV["EMAIL"] %></b>
                     </span>
                 </td>
                 <td align="center">
                   <br/>
                   <span style="color: #5b5b5f; font-size: 13px;letter-spacing:-0.3px;">
                       Adiciona aí:
-                      <a href="https://api.whatsapp.com/send?phone=<%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>" style="text-decoration: none; color: #5b5b5f;">
-                        <b><%= ENV["WHATSAPP"] %></b>
+                      <a href="https://api.whatsapp.com/send?phone=<%%= ENV["WHATSAPP"].gsub(/[^0-9+]/, "") %>" style="text-decoration: none; color: #5b5b5f;">
+                        <b><%%= ENV["WHATSAPP"] %></b>
                       </a>
                       Segunda a sexta | 8h às 20h.
                     </span>
@@ -101,13 +101,13 @@
             <br/>
             <br/>
             <br/>
-            <span style="color: #5b5b5f;">Abraços,<br/>Equipe <%= ENV["APPLICATION"] %>.</span>
+            <span style="color: #5b5b5f;">Abraços,<br/>Equipe <%%= ENV["APPLICATION"] %>.</span>
           </td>
         </tr>
         <tr>
           <td align="center"><br/><br/>
-          <a href="<%= ENV["DOMAIN"] %>" target="_blank">
-              <img src="<%= ENV["DOMAIN"] %>/imgs/logo.png"/>
+          <a href="<%%= ENV["DOMAIN"] %>" target="_blank">
+              <img src="<%%= ENV["DOMAIN"] %>/imgs/logo.png"/>
             </a>
             <br/>
             <br/>
