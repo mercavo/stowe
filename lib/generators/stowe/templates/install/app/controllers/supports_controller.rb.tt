@@ -8,7 +8,7 @@ class SupportsController < AuthorizedController
   def index
     search
     
-    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'supports/table', locals: {records: @records} ) if params[:q].present?
+    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'supports/table', locals: {supports: @supports} ) if params[:q].present?
   end
 
   # GET /supports/1
@@ -82,7 +82,7 @@ class SupportsController < AuthorizedController
     end
 
     def search     
-      @pagy, @records = pagy( @model.search(params[:q]))
+      @supports = pagy( @model.search(params[:q]))
     end
 
     def set_layout

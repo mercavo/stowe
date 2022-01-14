@@ -77,6 +77,7 @@ module Stowe
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
         template "app/views/homepage/profile.html.erb.tt", File.join("app/views/homepage",  "profile.html.erb")
         template "app/views/layouts/application.html.erb", File.join("app/views/layouts",  "application.html.erb")
+        template "app/views/layouts/mailer.html.erb", File.join("app/views/layouts",  "mailer.html.erb")
         template "app/views/layouts/auth.html.erb", File.join("app/views/layouts",  "auth.html.erb")
         template "app/views/layouts/admin.html.erb", File.join("app/views/layouts",  "admin.html.erb")
         template "app/views/layouts/shared/_menu.html.erb.tt", File.join("app/views/layouts/shared",  "_menu.html.erb")

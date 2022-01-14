@@ -6,7 +6,7 @@ class AccountsController < AdminController
   def index
     search
     
-    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'accounts/table', locals: {records: @records} ) if params[:q].present?
+    return render turbo_stream: turbo_stream.replace('loadingData', partial: 'accounts/table', locals: {accounts: @accounts} ) if params[:q].present?
   end
 
   def account_default
@@ -93,6 +93,6 @@ class AccountsController < AdminController
     end
 
     def search     
-      @pagy, @records = pagy( Account.search(params[:q]))
+      @accounts = pagy( Account.search(params[:q]))
     end
 end

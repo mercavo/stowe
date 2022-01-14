@@ -1,4 +1,1 @@
-<%%new_email = if @resource.try(:unconfirmed_email?) ? @resource.unconfirmed_email : @resource.email
-      content = "<p>Estamos entrando em contato para notificá-lo de que seu e-mail está sendo alterado para #{new_email}.</p>"
-    end %>
-<%%= render("template", message: content.html_safe) %>
+<p>Estamos entrando em contato para notificá-lo de que seu e-mail está sendo alterado para <%%= new_email %>.</p>

@@ -1,0 +1,28 @@
+{
+	"sgg": {
+		"prefix": ["sgg"],
+		"body": ["<%= gg('${0:plus}') %>"]
+	},
+
+	"ssgg": {
+		"prefix": ["ssgg"],
+		"body": ["<%= ggstr('${1:plus}', t('${0}')) %>"]
+	},
+	"snested": {
+		"prefix": ["snested"],
+		"body": ["<%= nested_form(f, ${1:model}, ${2:field}, ${3:_renderizar}, ${4:title}, destroy=true, show_form=true) %>"]
+	},
+	"stab":{
+		"prefix": ["stab"],
+		"body": ["<%= tabs('${1}', [{name: '${2}', label: t('${3}'), icon: '${4}', renderizar: ${5}}], classe='justify-content-start') %>"]
+	},
+	"smodal": {
+		"prefix": ["smodal"],
+		"body": ["<%= modal(name:'${1}', renderizar:'${2}', btnstr: t('${3}'), icon: '${4}', title: '${5}')%>"]
+	},
+	"stable": {
+		"prefix": ["smodal"],
+		"body": ["<%= table(${1:model} , [${2:colunas array}] , ${3:pagy}) %>"]
+		
+	}
+}
