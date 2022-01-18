@@ -88,4 +88,20 @@ modal=> open modal ao clicar || deve ser uma instanica modal
 table(Subscribe , ["plan", "name", "sign", "status", "expire"] , @records)
 ```
 
+##### select_default
+model =>> pesquisa  => Account.all
+path => onde sera redirecionado, set_account
+modal => se precisar adicionar algo, cadas nova account
 
+```
+<%= select_default(Account.all, '/massasa')
+<%= select_default(Account.all, '/massasa', modal(name:'addaccount', renderizar:'util/setaccount', btnstr: '', icon: 'math-plus', title: t('.new_account'), btnclass: "btn mb-3"))
+```
+
+##### select_default
+
+```
+<%= render 'util/criteria', path: 'supports', criteria: [
+        { field: "name", type: "string", label: t('.name')},
+      ]  %>
+```

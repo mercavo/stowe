@@ -34,6 +34,7 @@ Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.reset_password_within = 6.hours
   config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.parent_controller = 'Users::DeviseController'
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

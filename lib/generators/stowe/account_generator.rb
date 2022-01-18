@@ -7,7 +7,7 @@ module Stowe
         inside Rails.root do
           run 'rails g scaffold account name'
           run 'rails g migration CreateJoinTableAccountUser account user'
-          run 'yarn add stimulus-timeagon'
+          run 'yarn add stimulus-timeago'
         end
       end 
 

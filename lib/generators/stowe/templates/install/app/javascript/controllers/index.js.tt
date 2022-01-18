@@ -13,3 +13,6 @@ application.register("nested-form", NestedForm)
 
 import Timeago from "stimulus-timeago"
 application.register("timeago", Timeago)
+
+import Reveal from "stimulus-reveal-controller"
+application.register("reveal", Reveal)

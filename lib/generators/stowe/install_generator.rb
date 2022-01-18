@@ -17,6 +17,7 @@ module Stowe
           run 'yarn add css.gg'
           run 'yarn add stimulus'
           run 'yarn add stimulus-notification'
+          run 'yarn add stimulus-reveal-controller'
         end
       end
 
@@ -72,6 +73,7 @@ module Stowe
         template "app/controllers/authorized_controller.rb.tt", File.join("app/controllers",  "authorized_controller.rb")
         template "app/controllers/admin_controller.rb.tt", File.join("app/controllers",  "admin_controller.rb")
         template "app/controllers/util_controller.rb.tt", File.join("app/controllers",  "util_controller.rb")
+        template "app/controllers/users/util_controller.rb.tt", File.join("app/controllers/users",  "devise_controller.rb")
 
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
@@ -91,6 +93,9 @@ module Stowe
         
         template "app/views/util/_nested_form.html.erb.tt", File.join("app/views/util",  "_nested_form.html.erb")
         template "app/views/util/_paginate.html.erb.tt", File.join("app/views/util",  "_paginate.html.erb")
+        template "app/views/util/_criteria.html.erb.tt", File.join("app/views/util",  "_criteria.html.erb")
+
+        template "app/javascript/controllers/criteria_controller.js.tt", File.join("app/javascript/controllers",  "criteria_controller.js")
 
         template "app/assets/stylesheets/base.scss.tt", File.join("app/assets/stylesheets",  "base.scss")
         template "app/assets/stylesheets/variables.scss.tt", File.join("app/assets/stylesheets",  "variables.scss")

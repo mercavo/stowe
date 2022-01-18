@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stowe (0.1.9)
+    stowe (0.1.11)
       dotenv-rails
       sidekiq
 
@@ -42,7 +42,7 @@ GEM
       nokogiri (>= 1.5.9)
     method_source (1.0.0)
     minitest (5.15.0)
-    nokogiri (1.13.0-x86_64-linux)
+    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     racc (1.6.0)
     rack (2.2.3)

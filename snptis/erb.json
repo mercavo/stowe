@@ -22,7 +22,12 @@
 	},
 	"stable": {
 		"prefix": ["smodal"],
-		"body": ["<%= table(${1:model} , [${2:colunas array}] , ${3:pagy}) %>"]
-		
+		"body": ["<%= table(${1:model} , [${2:colunas array}] , ${3:pagy}) %>"]	
+	},
+
+	"scriteria": {
+		"prefix": ["scriteria"],
+		"body": ["<%= render 'util/criteria', path: '${1}', criteria: [{ field: '${2}', type: ${3:string}, label: t('${4}')}] %>"]	
 	}
 }
+

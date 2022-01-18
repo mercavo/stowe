@@ -1,1 +1,1 @@
-<%%%=table(<%%=singular_table_name.capitalize%> , <%%=attributes.map { |attribute| next if attribute.name == 'account'; attribute.name;  }.reject {|e| !e.present?} %> , @records)%>
+<%%%=table(<%%=singular_table_name.capitalize%> , <%%=attributes.map { |attribute| next if attribute.name == 'account'; attribute.name;  }.reject {|e| !e.present?} %> , @<%%= plural_table_name %>)%>

@@ -24,6 +24,9 @@ body { min-height: 100vh; }
   border: solid 1px #000 
 }
 
+.text-primary{
+  color: $primary;
+}
 
 .form-signin {
   text-align: left;
@@ -65,4 +68,8 @@ body { min-height: 100vh; }
 
 .bg-support-admin{
   background-color: $bg-support-admin;
+}
+
+.hidden{
+  display: none;
 }

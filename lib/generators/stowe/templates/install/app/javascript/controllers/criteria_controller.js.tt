@@ -1,0 +1,146 @@
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = [ "field", "simbol", "q", "q2","outputtxt", "selected", "compared" ]
+  static values = { 
+    contar: Number, 
+    criteria: Array,
+    url: String,
+    path: String
+  }
+
+
+  connect() {
+  }
+
+  ok(){
+    const field = JSON.parse(this.fieldTarget.value)
+    const simbol = JSON.parse(this.simbolTarget.value)
+    const q = this.qTarget.value
+    
+    if(simbol == '' || field == "" || q == "") return 
+    // alert(field.type)
+    // if(field.type == 'enum' || field.type == 'references'){
+    //   alert('a')
+    //  q = field.args.filter(function(arg){
+    //    return arg[0] == q
+    //  })
+    // }
+    let aux = this.criteriaValue
+    aux.push({query: `${field.field} ${simbol.value}`, q: q, label: `${field.label} ${simbol.label} ${q}`, field: field.field, simbol: simbol.value})
+    this.criteriaValue = aux
+    
+    this.render()
+  }
+
+  delete({ params: { id } }){
+    this.criteriaValue = this.criteriaValue.filter(function(value, index, arr){ 
+      return index != id;
+    });
+    this.render()
+  }
+
+  selectedfield(){
+    
+    const field = JSON.parse(this.fieldTarget.value)
+    this.simbolTarget.innerHTML = ""
+    const simbolTarget =  this.simbolTarget
+
+    var compare = [] 
+    if(field.type == 'string'){
+      compare.push({value: "= '?'", label: "Igual à"})
+      compare.push({value: "like '%?%'", label: "Comtém"})
+
+      this.render_input_type()
+    }
+
+    if(field.type == 'date'){
+      compare.push({value: "between '?' and ? ", label: "entre"})
+
+      this.render_date_type()
+    }
+
+    if(field.type == 'integer'){
+      compare.push({value: "= '?'", label: "Igual à"})
+      compare.push({value: "> '?'", label: "Maior que"})
+      compare.push({value: "< '?'", label: "Menor que"})
+      compare.push({value: ">= '?'", label: "Maior igual à"})
+      compare.push({value: "<= '?'", label: "Menor igual à"})
+
+      this.render_integer_type()
+    }
+
+    if(field.type == 'enum' || field.type == 'references'){
+      compare.push({value: "= '?'", label: "Igual à"})
+      this.render_select_type(field.args)
+    }
+    
+    compare.forEach(function(item){
+      const option = document.createElement("option");
+      option.value = JSON.stringify(item);
+      option.innerHTML = item.label ;
+      simbolTarget.appendChild(option);
+    })  
+  }
+
+  render(){
+    var out = ''
+    var qResult = '';  var qq = ''; 
+    this.criteriaValue.forEach((item, index) => {
+      out += `<span class="badge bg-secondary m-2" data-criteria-target="selected">${item.label}<button type="button" class="btn-close" aria-label="Close" data-action="click->criteria#delete" data-criteria-id-param="${index}"></button></span>`
+      qResult += `&qq[]=${item.field} ${item.simbol}`
+      qq += `&search[]=${item.q}`
+    })
+
+    this.urlValue = encodeURI(`${this.pathValue}?v=${Math.random()}${qResult}${qq}&geter=${out}`)
+    
+    out += '<button class="btn btn-primary btn-sm" data-action="click->criteria#search">PESQUISAR</button>'
+    // out += `<a href="${url}" data-turbo-action="replace">PESQUISAR</a>`
+    this.outputtxtTarget.innerHTML = out
+    this.contarValue++
+
+    this.fieldTarget.value = ""
+    this.simbolTarget.value = ""
+    this.qTarget.value = ""
+  }
+
+  search(){
+    let frame = document.querySelector('turbo-frame#loadingData')
+    frame.src = `/supports?v=asds${this.urlValue}`
+    frame.reload()
+  }
+
+  render_input_type(){
+    this.comparedTarget.classList.remove('hidden')
+    this.comparedTarget.innerHTML  = '<input class="form-control form-control-sm" data-criteria-target="q" type="text" width="120">'
+  }
+
+  render_intergr_type(){
+    this.comparedTarget.classList.remove('hidden')
+    this.comparedTarget.innerHTML  = '<input type="tel" class="form-control form-control-sm" data-criteria-target="q" type="text" width="120">'
+  }
+
+  render_date_type(){
+    this.comparedTarget.classList.remove('hidden')
+    var aux = '<div>'
+    aux += '<input class="form-control form-control-sm" data-criteria-target="q" type="text" width="60">'
+    aux += '<input class="form-control form-control-sm" data-criteria-target="q2" type="text" width="60">'
+    aux += '</div>'
+    this.comparedTarget.innerHTML = aux
+  }
+
+  render_select_type(args){
+    this.comparedTarget.classList.remove('hidden')
+    var out = document.createElement("select") 
+    out.setAttribute("data-criteria-target", "q")
+    out.setAttribute("class", "form-select form-select-sm")
+    args.forEach(function(arg){
+      let option = document.createElement("option");
+      option.value = arg[0];
+      option.innerHTML = arg[1] ;
+      out.appendChild(option);
+    })
+    
+    this.comparedTarget.appendChild(out)
+  }
+}

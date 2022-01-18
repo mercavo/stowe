@@ -1,0 +1,27 @@
+<div data-controller="reveal" data-reveal-hidden-class="hidden" class="d-flex">
+  <div data-reveal-target="item" class="hidden me-2">
+    <div data-controller="criteria" data-criteria-path-value="/supports">
+      <div class="d-flex">
+        <select data-criteria-target="field" class="form-select form-select-sm" data-action="change->criteria#selectedfield">
+          <option selected value=""><%%=t('selection')%></option>
+          <%%= criteria.each do |obj| %>
+            <option value="<%%=obj.to_json%>"><%%=obj[:label]%></option>
+          <%% end %>
+        </select>
+        <select data-criteria-target="simbol" class="form-select form-select-sm">
+          <option selected value=""><%%=t('selection')%></option>
+        </select>
+
+        <div data-criteria-target="compared" class="hidden" style="width: 350px"></div>
+        
+        <button class="btn btn-secondary btn-sm btn-block text-white" data-action="click->criteria#ok">ADD</button>
+      </div>
+      
+      <div data-criteria-target="outputtxt"></div>
+    </div>      
+  </div>
+  <%%= turbo_frame_tag("search") do %>
+    <%%= link_to ggstr('search', ""), 'javascript:;', class: "btn", data: {action: "click->reveal#toggle"} %>
+  <%%end%>
+</div>
+

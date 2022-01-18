@@ -136,18 +136,14 @@ module ApplicationHelper
       aux << '<table class="table table-striped table-hover">'
       aux << '<thead><tr>'
       columns.each do |column|
-        if column.class == Hash
-          field = column[:field]
-        else
-          field = column
-        end
+        field = column
         aux << '<th>'+ model.human_attribute_name(field) +'</th>'
       end
       aux << '</tr></thead>'
       aux << '<tbody>'
       records.each do |record|
         aux << '<tr>'
-          aux << table_row(record, columns, with_link, modal)
+          aux << table_row(record, columns, with_link, modal, model)
         aux << '</tr>'
       end
       aux << '</tbody>'
@@ -166,6 +162,23 @@ module ApplicationHelper
     aux.html_safe
   end
 
+  # model =>> pesquisa 
+  # path => onde sera redirecionado 
+  # modal => se precisar adicionar algo
+
+  def select_default(model, path, modal=nil)
+    aux = ''
+    aux << '<div class="d-flex">'
+    aux << "<select class='form-select form-select-lg mb-3 me-3'  onchange='this.options[this.selectedIndex].value && (window.location = \"#{path}/this.options[this.selectedIndex].value\");'>"
+    model.each do |sc|
+      aux << "<option #{'selected' if sc.id } value='#{sc.id}'>#{sc.name}</option>"
+    end
+    aux << '</select>'
+    aux << modal if modal.present?
+    aux << '</div>'
+    aux.html_safe
+  end
+
 
   private
 
@@ -173,7 +186,7 @@ module ApplicationHelper
     modal(modal)
   end
 
-  def table_row(obj, columns, with_link, modal)
+  def table_row(obj, columns, with_link, modal, model)
     
     aux = ''
     aux << '<tr id="'+ dom_id(obj) +'">'
@@ -183,6 +196,8 @@ module ApplicationHelper
       else
         if column.include?("_at")
           field = l obj[column], format: :simple
+        elsif column == 'status'
+          field = model.human_attribute_name("status.#{obj.status}")
         else
           field = obj[column]
         end
@@ -227,6 +242,10 @@ module ApplicationHelper
 
   def partialrender(str)
     render partial: str
+  end
+
+  def partial_creteria(args)
+    render partial: "util/criteria", args: args
   end
 
   def partial_action(obj)
