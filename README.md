@@ -15,7 +15,7 @@ In packege.json.
 
 terminal
 ```sh
-yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install && rails g scaffold account name && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
+yes | rails g stowe:setup && bundle &&  yes | rails g stowe:install && yes | rails g stowe:account && yes | rails g stowe:admin && yes | rails g stowe:pay && yes | rails g stowe:support
 ```
 
 
@@ -43,6 +43,7 @@ nested_form(f, SupportMessage.new, 'support_messages','message_form', t('.messag
 
 
 ##### tabs
+
 id => Identificador unico da tab
 args => args*
 class=> classe css da possocao

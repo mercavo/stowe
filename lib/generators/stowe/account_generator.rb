@@ -17,7 +17,6 @@ module Stowe
         template "app/views/accounts/create_account.html.erb"
         template "app/views/accounts/show.html.erb"
         template "app/views/accounts/_users_item.html.erb"
-        template "app/views/accounts/_message.html.erb"
         template "app/views/accounts/_item.html.erb"
 
 
