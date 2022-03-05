@@ -73,7 +73,7 @@ module Stowe
         template "app/controllers/authorized_controller.rb.tt", File.join("app/controllers",  "authorized_controller.rb")
         template "app/controllers/admin_controller.rb.tt", File.join("app/controllers",  "admin_controller.rb")
         template "app/controllers/util_controller.rb.tt", File.join("app/controllers",  "util_controller.rb")
-        template "app/controllers/users/util_controller.rb.tt", File.join("app/controllers/users",  "devise_controller.rb")
+        template "app/controllers/users/devise_controller.rb.tt", File.join("app/controllers/users",  "devise_controller.rb")
 
         template "app/controllers/application_controller.rb.tt", File.join("app/controllers",  "application_controller.rb")
         template "app/views/homepage/index.html.erb.tt", File.join("app/views/homepage",  "index.html.erb")
