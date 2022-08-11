@@ -46,7 +46,7 @@ nested_form(f, SupportMessage.new, 'support_messages','message_form', t('.messag
 
 id => Identificador unico da tab
 args => args*
-class=> classe css da possocao
+class=> classe css 
 ------------------------------------
 args: { name: "basic", label: t('.basic'), icon: 'tikcode',  render: "accounts/form"},
 ```
